@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Calendar</title>
+    <link rel="stylesheet" href="../CSSPages/WeekCalendar.css" />
+  </head>
+  <body>
+    <div class="calendar-container">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <h1
+          style="text-align: center; color: white; padding: 10px"
+          id="CurrentWeek"
+        ></h1>
+        <div style="display: flex; flex-direction: row">
+          <button
+            id="MonthCalendar"
+            type="button"
+            style="width: 100px"
+            class="ButtonChoice"
+          >
+            Monthly
+          </button>
+
+          <button
+            id="close"
+            type="button"
+            style="width: 50px; padding: 0; background-color: red"
+            class="ButtonChoice"
+          >
+            <p style="font-weight: 900; font-size: 25px">&times;</p>
+          </button>
+        </div>
+      </div>
+
+      <table id="weeklyCalendar">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody style="height: 85vh" id="calendarBody">
+          <!-- Calendar rows will be generated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="../JSPages/WeekCalendar.js"></script>
+  </body>
+</html>

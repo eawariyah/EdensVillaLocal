@@ -1,0 +1,382 @@
+body{
+  color: white;
+  background-color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  /* height: 100vh; */
+  
+}
+
+#SettingsMenu {
+  display: none;
+}
+
+#StaffMenu {
+  display: none;
+}
+
+.logoImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+.BigBody {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: row;
+  
+}
+
+.MenuItems{
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  width: 350px;
+  background-color: #1E1E1E;
+  border-radius: 8px 0px 0px 8px;
+  
+}
+
+.logoColumn{
+display: flex;
+flex-direction: row;
+/* align-items: center; */
+/* justify-content: center; */
+margin-top: 10px;
+margin-left: 10px;
+/* margin-bottom: auto; */
+
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+input,
+select,
+textarea {
+  width: 85%;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #000000;
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+button {
+  font-size: 16px;
+  /* padding: 10px 20px; */
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  width: 90%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ButtonChoice {
+  background-color: #000000;
+  color: white;
+
+}
+.ButtonChoice:hover {
+  box-shadow: 0 0 20px #141414, 0 0 30px #494949;
+  border: 1px solid #ffffff;
+}
+
+.OtherButtonChoice {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+
+}
+.OtherButtonChoice:hover {
+  box-shadow: 0 0 20px #1f1f1f, 0 0 30px #1f1f1f;
+  border: 1px solid #000000;
+  background-color: #000000;
+  color: white;
+}
+
+.buttonsColumn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+  
+}
+
+.RightBody{
+  display: flex;
+  flex-direction: column;
+
+  width: 900px;
+  /* height: 100vh; */
+  border-radius: 0px 8px 8px 0px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border: 1px solid #333;
+  color: white;
+  /* margin: 20px 0px 20px 0px; */
+  background-color: #3f3f3f;
+}
+
+.ReservationsText{
+  margin:10px;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.ReservationsTextContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+.SecondRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 10px 0px 10px;
+  /* gap: 20px; */
+
+}
+
+.AvailableRooms{
+  width: 500px;
+  height: 150px;
+  background-color: #1E1E1E;
+  border-radius: 8px;
+  margin-left: 5px;
+  
+}
+
+.ReservationsDetails{
+  width: 500px;
+  height: 150px;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  margin-right: 5px;
+
+}
+
+.ThirdRow{
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.RevenueBookingColumn{
+  display: flex;
+  flex-direction: column;
+}
+
+.TotalRevenue{
+  display: flex;
+  width: 550px;
+  height: 250px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.BookingDetails{
+  display: flex;
+  width: 550px;
+  height: 380px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.VisitorsAmountColumn{
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+}
+.yesterday-line {
+  stroke: #ff4136;
+}
+.today-line {
+  stroke: #0074d9;
+}
+.point {
+  fill: #ff4136;
+}
+.axis {
+  stroke: black;
+  stroke-width: 1;
+}
+.legend {
+  font-size: 12px;
+  fill: black;
+}
+.VisitorsOverTime {
+  margin-left: 10px;
+  display: flex;
+  width: 320px;
+  height: 380px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.RoomGridWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 536px;
+  /* height: 448px; */
+  background-color: #333;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.GridAlert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 78px;
+  height: 60px;
+  background-color: #ff0000;
+  margin: 4px;
+}
+
+.GridRow {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.GridTextColor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 10px;
+  width: 100%;
+}
+
+.GridTextColor1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  width: 100%;
+  /* font-weight: bold; */
+  margin: 10px;
+}
+.AmountDetails{
+  display: flex;
+  width: 320px;
+  height: 250px;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 10px;
+  background-color: #f0f8ff;
+    border-radius: 12px;
+    /* padding: 20px; */
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  
+}
+
+.ReservationsDetailsTitle{
+  color: black; font-weight: 700; margin: 10px
+}
+
+.ReservationsDetailsTitleWhite{
+  color: rgb(255, 255, 255); font-weight: 700; margin: 10px
+}
+
+
+.ReservationsDetailsSubRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 10px 0px 10px;
+}
+
+.ImgStyle{
+  width: 25px; height: 25px
+}
+
+.ReservationsDetailsSubColumn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  width: 80px;
+  height: 100px;
+  padding: 10px;
+}
+
+.ReservationsDetailsSubColumnWhite{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  width: 80px;
+  height: 100px;
+  padding: 10px;
+}
+
+.BoldText{
+  font-weight: bolder;
+  height: 0px;
+}
+
+.bar {
+  fill: #1E1E1E;
+}
+.bar:hover {
+  fill: rgb(0, 0, 0);
+}
+.axis {
+  font: 10px sans-serif;
+}
+.x-label, .y-label {
+  font: 12px sans-serif;
+  fill: black;
+}
+

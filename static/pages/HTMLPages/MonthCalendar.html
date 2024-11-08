@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monthly Calendar</title>
+    <link rel="stylesheet" href="../CSSPages/MonthCalendar.css" />
+  </head>
+  <body>
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <div
+          style="
+            display: flex;
+            /* justify-content: space-between; */
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+          "
+        >
+          <button style="font-size: larger; font-weight: 900" id="prevMonth">
+            &NestedLessLess;
+          </button>
+          <h1 id="currentMonth"></h1>
+          <button style="font-size: larger; font-weight: 900" id="nextMonth">
+            &NestedGreaterGreater;
+          </button>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+          "
+        >
+          <button
+            id="MonthCalendar"
+            type="button"
+            style="width: 100px"
+            class="ButtonChoice"
+          >
+            Week View
+          </button>
+          <button
+            id="close"
+            type="button"
+            style="width: 50px; padding: 0; background-color: red"
+            class="ButtonChoice"
+          >
+            <p style="font-weight: 900; font-size: 25px">&times;</p>
+          </button>
+        </div>
+      </div>
+      <table style="height: 85vh" class="calendar">
+        <thead>
+          <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody id="calendarBody">
+          <!-- Days of the month will be generated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="../JSPages/MonthCalendar.js"></script>
+  </body>
+</html>

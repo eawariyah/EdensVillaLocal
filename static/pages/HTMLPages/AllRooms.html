@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Clients</title>
+    <link rel="icon" href="../resources/EdenVilla.jpg" />
+    <link rel="stylesheet" href="../CSSPages/AllRooms.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button onclick="exportToExcel()">Download Excel</button>
+    <div class="modal-content">
+      <span
+        style="
+          color: #ffffff;
+          float: right;
+          font-size: 100px;
+          font-weight: bold;
+          cursor: pointer;
+          margin-right: 50px;
+        "
+        id="close"
+        class="close"
+        >&times;</span
+      >
+    </div>
+    <div class="container">
+      <h2>All Rooms</h2>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search"
+        onkeyup="searchClients()"
+      />
+
+      <table id="clientTable">
+        <thead>
+          <tr>
+            <th>Room Type</th>
+            <th>Room Name</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Balcony</th>
+            <th>Dimensions</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="clientList"></tbody>
+      </table>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <script src="../JSPages/AllRooms.js"></script>
+  </body>
+</html>

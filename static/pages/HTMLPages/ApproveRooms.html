@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room Cleaning Status</title>
+    <link rel="stylesheet" href="../CSSPages/AllRooms.css" />
+  </head>
+  <body>
+    <span
+      style="
+        color: #ffffff;
+        float: right;
+        font-size: 100px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 50px;
+      "
+      id="close"
+      class="close"
+      >&times;</span
+    >
+    <h1 style="text-align: center">Approve Rooms in Cleaning Status</h1>
+
+    <table id="cleaningRoomsTable">
+      <thead>
+        <tr>
+          <th>Room Type</th>
+          <th>Room Name</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rooms in cleaning status will be dynamically added here -->
+      </tbody>
+    </table>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/ApproveRooms.js"></script>
+  </body>
+</html>

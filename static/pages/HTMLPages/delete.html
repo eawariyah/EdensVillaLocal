@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple HTML Table</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        position: relative; /* Make the table cells relative for absolute positioning */
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse; /* Remove space between borders */
+      }
+
+      th,
+      td {
+        height: 50px;
+        position: relative; /* Ensure cells are positioned relative to this context */
+      }
+
+      .overlay {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        right: 5%;
+        bottom: 5%;
+        border-radius: 5px;
+        color: white; /* Text color */
+        text-align: center; /* Center the text */
+        line-height: 50px; /* Center vertically */
+        z-index: 1; /* Ensure it appears above the cells */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simple Table Example</h2>
+
+    <table id="eventTable">
+      <tr>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <script>
+      function EventSection(a, b, c, d, e, f) {
+        // Select the table
+        const table = document.getElementById("eventTable");
+
+        // Get the target cell
+        const targetCell = table.rows[a].cells[b];
+
+        // Set colspan for the target cell
+        targetCell.colSpan = c;
+
+        // Clear cells that are pushed away
+        for (let i = 1; i < c; i++) {
+          targetCell.nextElementSibling.remove();
+        }
+
+        // Create overlay div
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+
+        // Set text and colors
+        overlay.textContent = d;
+        overlay.style.backgroundColor = e;
+        overlay.style.color = f;
+
+        // Append overlay to the target cell
+        targetCell.appendChild(overlay);
+      }
+
+      // Example usage of EventSection function
+      EventSection(2, 1, 5, "Occupied", "Blue", "White");
+    </script>
+  </body>
+</html>

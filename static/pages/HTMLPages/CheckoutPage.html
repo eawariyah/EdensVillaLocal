@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSSPages/CheckoutPage.css" />
+  </head>
+  <body>
+    <div class="Container">
+      <div class="FirstRow">
+        <button class="BackButton" style="text-align: center" type="button">
+          &LeftArrow; Back
+        </button>
+      </div>
+
+      <div class="SecondRow">
+        <h1>Check Out</h1>
+      </div>
+      <div class="ThirdRow">
+        <div class="LeftHalf">
+          <div class="ParticularGuest">
+            <div class="ParticularGuestImage">
+              <img id="GuestImage" src="" alt="" />
+            </div>
+            <div class="ParticularGuestText">
+              <div class="PerItem">
+                <div class="ItemRow">
+                  <div style="width: 100%" class="ItemBody">
+                    <div><p class="ItemTitle">Full Name</p></div>
+                    <div class="ItemValue"><p id="FullName"></p></div>
+                  </div>
+                </div>
+                <div class="ItemRow">
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Phone Number</p></div>
+                    <div class="ItemValue"><p id="PhoneNumber"></p></div>
+                  </div>
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Email</p></div>
+                    <div class="ItemValue"><p id="Email"></p></div>
+                  </div>
+                </div>
+                <div class="ItemRow">
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Check In</p></div>
+                    <div class="ItemValue"><p id="Checkin"></p></div>
+                  </div>
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Check Out</p></div>
+                    <div class="ItemValue"><p id="Checkout"></p></div>
+                  </div>
+                  <div style="display: none" class="ItemBody">
+                    <div><p class="ItemTitle">Days</p></div>
+                    <div class="ItemValue"><p id="Days"></p></div>
+                  </div>
+                </div>
+                <div class="ItemRow">
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Room Type</p></div>
+                    <div class="ItemValue"><p id="RoomType"></p></div>
+                  </div>
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Room</p></div>
+                    <div class="ItemValue"><p id="Room"></p></div>
+                  </div>
+                </div>
+                <div class="ItemRow">
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Room Service</p></div>
+                    <div class="ItemValue"><p id="RoomService"></p></div>
+                  </div>
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Kitchen</p></div>
+                    <div class="ItemValue"><p id="Kitchen"></p></div>
+                  </div>
+                </div>
+                <div class="ItemRow">
+                  <div class="ItemBody" style="width: 100%">
+                    <div><p class="ItemTitle">Special Request</p></div>
+                    <div class="ItemValue"><p id="SpecialRequest"></p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="AllGuests">
+            <div style="margin: 10px">
+              <input type="search" placeholder="Search Guest" name="" id="" />
+            </div>
+            <div style="margin: 10px" class="AllGuestsSub"></div>
+          </div>
+        </div>
+        <div class="RightHalf">
+          <div class="RightHalfSecondRow">
+            <div class="RightHalfSecondRowSubOne">
+              <h2 id="RoomTypeBillings"></h2>
+              <div class="RightHalfSecondRowSybTwo">
+                <h2>GH₵&ThinSpace;</h2>
+                <h2 id="RoomTypeBillingsValue"></h2>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <div class="RightHalfSecondRowSybTwo">
+                <p>x</p>
+                <p>1</p>
+                <p>&ThinSpace;Adults</p>
+                <p>,&ThickSpace;</p>
+                <p id="DaysBillings"></p>
+                <p>&ThinSpace;night</p>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <div class="RightHalfSecondRowSybTwo">
+                <p id="CheckinBillings"></p>
+                <p>&ThinSpace; - &ThinSpace;</p>
+                <p id="CheckoutBillings"></p>
+              </div>
+            </div>
+            <button
+              style="width: 100%; height: 50px"
+              class="OtherButtonChoice"
+              id="CheckOutBtn"
+              type="button"
+            >
+              Change Date
+            </button>
+          </div>
+
+          <div class="Line"></div>
+
+          <div class="RightHalfSecondRow">
+            <div class="RightHalfSecondRowSubOne">
+              <h2>Kitchen Service</h2>
+              <div class="RightHalfSecondRowSybTwo">
+                <h2>GH₵&ThinSpace;</h2>
+                <h2 id="KitchenBillings"></h2>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <div class="RightHalfSecondRowSybTwo">
+                <p>x</p>
+                <p>1</p>
+                <p>&ThinSpace;Adults</p>
+                <p>,&ThickSpace;</p>
+                <p id="DaysBillings2"></p>
+                <p>&ThinSpace;night</p>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <div class="RightHalfSecondRowSybTwo">
+                <p>30, Jan 2024</p>
+                <p>&ThinSpace; - &ThinSpace;</p>
+                <p>31, Jan 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="Line"></div>
+
+          <div class="RightHalfSecondRow">
+            <div class="RightHalfSecondRowSubOne">
+              <h2>Room Service</h2>
+              <div class="RightHalfSecondRowSybTwo">
+                <h2>GH₵&ThinSpace;</h2>
+                <h2 id="RoomServiceBillings"></h2>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <div class="RightHalfSecondRowSybTwo">
+                <p>x</p>
+                <p>1</p>
+                <p>&ThinSpace;Adults</p>
+                <p>,&ThickSpace;</p>
+                <p id="DaysBillings3"></p>
+                <p>&ThinSpace;night</p>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <div class="RightHalfSecondRowSybTwo">
+                <p>30, Jan 2024</p>
+                <p>&ThinSpace; - &ThinSpace;</p>
+                <p>31, Jan 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="Line"></div>
+
+          <div style="margin: 10px">
+            <div class="RightHalfSecondRowSubOne">
+              <h2
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                Sum of Bill
+              </h2>
+              <div>
+                <div class="RightHalfSecondRowSybTwo">
+                  <h2>GH₵&ThinSpace;</h2>
+                  <h2 id="SumOfBill"></h2>
+                </div>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <h2
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                Discount
+              </h2>
+              <div>
+                <div class="RightHalfSecondRowSybTwo">
+                  <h2>- GH₵&ThinSpace;</h2>
+                  <h2 id="Discount"></h2>
+                </div>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <h2
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                Pre Payment
+              </h2>
+              <div>
+                <div class="RightHalfSecondRowSybTwo">
+                  <h2>- GH₵&ThinSpace;</h2>
+                  <h2 id="PrePayment"></h2>
+                </div>
+              </div>
+            </div>
+            <div class="RightHalfSecondRowSubOne">
+              <h2
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 24px;
+                "
+              >
+                Total bill
+              </h2>
+              <div>
+                <div class="RightHalfSecondRowSybTwo">
+                  <h2 style="font-size: 24px">GH₵&ThinSpace;</h2>
+                  <h2 style="font-size: 24px" id="Total"></h2>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button
+                style="width: 100%; height: 50px"
+                class="OtherButtonChoice"
+                id="CheckOutBtn"
+                type="button"
+              >
+                Check Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/CheckoutPage.js"></script>
+  </body>
+</html>

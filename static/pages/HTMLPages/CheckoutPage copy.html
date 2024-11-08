@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Clients</title>
+    <link rel="icon" href="../resources/EdenVilla.jpg" />
+    <link rel="stylesheet" href="../CSSPages/CheckoutPage.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- <div class="modal-content" style="display: flex; justify-content: flex-end">
+        <span
+          style="
+            color: #ffffff;
+            /* float: right; */
+            font-size: 100px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 50px;
+          "
+          id="close"
+          class="close"
+          >&times;</span
+        >
+      </div> -->
+      <h2>Current Clients</h2>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search"
+        onkeyup="searchClients()"
+      />
+
+      <table id="clientTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Check-In Date</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>Room</th>
+            <th>Days</th>
+            <th>Bill</th>
+            <th>Check-Out Date</th>
+            <th>Email</th>
+            <th>ID Type</th>
+            <th>Laundry</th>
+            <th>Kitchen</th>
+            <th>Room Type</th>
+            <th>Special Request</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="clientList"></tbody>
+      </table>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/CheckoutPage.js"></script>
+  </body>
+</html>

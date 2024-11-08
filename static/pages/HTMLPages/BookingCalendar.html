@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room Schedule</title>
+    <link rel="stylesheet" href="../CSSPages/BookingCalendar.css" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        position: relative; /* Make the table cells relative for absolute positioning */
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse; /* Remove space between borders */
+      }
+
+      th,
+      td {
+        height: 50px;
+        position: relative; /* Ensure cells are positioned relative to this context */
+      }
+
+      .overlay {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        right: 5%;
+        bottom: 5%;
+        /* height: 100%; Full height of the cell */
+        border-radius: 5px;
+        color: white; /* Text color */
+        text-align: center; /* Center the text */
+        line-height: 30px; /* Center vertically */
+        z-index: 1; /* Ensure it appears above the cells */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calendar-container">
+      <div
+        style="
+          height: 50px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <div>
+          <input
+            id="RowsInput"
+            type="number"
+            placeholder="number of rows"
+            value=""
+          />
+        </div>
+        <div
+          style="
+            display: flex;
+            /* justify-content: space-between; */
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+          "
+        >
+          <button style="font-size: larger; font-weight: 900" id="prevWeek">
+            &NestedLessLess;
+          </button>
+          <h1 id="currentMonth"></h1>
+          <button style="font-size: larger; font-weight: 900" id="nextWeek">
+            &NestedGreaterGreater;
+          </button>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <div style="display: flex; flex-direction: row">
+            <button
+              id="MonthCalendar"
+              type="button"
+              style="height: 40px; margin: 10px; width: 100px"
+              class="ButtonChoice"
+            >
+              Monthly
+            </button>
+            <button
+              id="MonthCalendar"
+              type="button"
+              style="
+                height: 40px;
+                margin: 10px;
+                width: 40px;
+                background-color: red;
+              "
+              class="ButtonChoice"
+            >
+              &times;
+            </button>
+
+            <!-- <button
+              id="close"
+              type="button"
+              style="
+                width: 40px;
+                height: 30px;
+                padding: 10px;
+                background-color: red;
+              "
+              class="ButtonChoice"
+            >
+              <p style="font-weight: 900; font-size: 25px">&times;</p>
+            </button> -->
+          </div>
+        </div>
+      </div>
+      <table id="scheduleTable">
+        <thead>
+          <!-- <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr> -->
+          <tr>
+            <!-- <th>Date</th> -->
+            <!-- The dates will be inserted here dynamically -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- The rooms and empty cells will be generated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="../JSPages/BookingCalendar.js"></script>
+  </body>
+</html>

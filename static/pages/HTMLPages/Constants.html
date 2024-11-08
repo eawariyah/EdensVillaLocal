@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyAgXyyibV7I04EzHE_nhxdWGAOKaYWGp0E",
+        authDomain: "fruitripenessdetectionsystem.firebaseapp.com",
+        databaseURL:
+          "https://fruitripenessdetectionsystem-default-rtdb.firebaseio.com",
+        projectId: "fruitripenessdetectionsystem",
+        storageBucket: "fruitripenessdetectionsystem.appspot.com",
+        messagingSenderId: "103968652296",
+        appId: "1:103968652296:web:79a1bfc1495062779165bd",
+        measurementId: "G-7HR89GF4K9",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+
+      const StandardSinglePrice = 350;
+      const DeluxePrice = 400;
+      const FamilySuitePrice = 600;
+      const ExecutiveSuitePrice = 500;
+      //Room Service
+      //Kitchen
+
+      // Room data array
+      const rooms = [
+        {
+          roomType: "Deluxe",
+          price: DeluxePrice,
+          roomName: "EV5C10",
+          status: "Available",
+          balcony: true,
+          dimensions: 330,
+        },
+      ];
+
+      let price = 0;
+      // Function to upload all room data to Firebase
+      function uploadRoomData() {
+        rooms.forEach((room) => {
+          const roomId = room.roomName; // Use room number as ID
+          database
+            .ref("rooms/" + roomId)
+            .set({
+              roomType: room.roomType,
+              roomName: room.roomName,
+              price: room.price,
+              Status: "Available",
+              balcony: room.balcony,
+              dimensions: room.dimensions,
+            })
+            .then(() => {
+              console.log(`Room ${room.roomName} uploaded successfully!`);
+            })
+            .catch((error) => {
+              console.error(`Error uploading room ${room.roomName}:`, error);
+            });
+        });
+      }
+
+      // Call the function to upload all room data
+      uploadRoomData();
+    </script>
+  </body>
+</html>

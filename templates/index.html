@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="icon" href="./static/resources/EdenVilla.jpg" />
+    <link rel="stylesheet" href="static/index.css" />
+  </head>
+  <body>
+    <div class="BigBody">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          width: 100px;
+          background-color: #1e1e1e;
+          border-radius: 8px;
+          margin-right: 10px;
+          position: relative;
+          z-index: 1;
+        "
+      >
+        <a href="index.html">
+          <img
+            class="logoImg"
+            style="width: 50px; height: 50px"
+            src="static/resources/logoRound.png"
+            alt=""
+          />
+        </a>
+
+        <div
+          style="
+            width: 200px;
+            height: 300px;
+            border-radius: 5px;
+            background-color: black;
+            position: absolute;
+            bottom: 25px;
+            left: 100px;
+          "
+          id="SettingsMenu"
+        >
+          <button class="ButtonChoice" id="SettingsPageOpen" type="button">
+            Change Password
+          </button>
+        </div>
+        <div>
+          <img
+            style="
+              width: 50px;
+              height: 50px;
+              margin-bottom: 10px;
+              cursor: pointer;
+            "
+            src="static/resources/settings.png"
+            alt=""
+            onclick="openSettings()"
+          />
+        </div>
+      </div>
+      <div class="MenuItems">
+        <div class="logoColumn">
+          <h1>Eden's Villa</h1>
+        </div>
+        <div class="buttonsColumn" style="color: black">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Reservations"
+            onkeyup="searchReservations()"
+          />
+          <button class="ButtonChoice" type="button">
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+              "
+            >
+              <img
+                src="static/resources/Home.png"
+                style="width: 25px; height: 25px"
+                alt=""
+              />
+              Dashboard
+            </div>
+          </button>
+          <button
+            class="OtherButtonChoice"
+            id="CreateReservationBtn"
+            type="button"
+          >
+            Tentative Reservations
+          </button>
+          <button class="OtherButtonChoice" id="ManageRoomsBtn" type="button">
+            Manage Rooms
+          </button>
+          <button class="OtherButtonChoice" id="ViewHistoryBtn" type="button">
+            View History
+          </button>
+          <button
+            class="OtherButtonChoice"
+            id="ManageStaffBtn"
+            onclick="openStaff()"
+            type="button"
+          >
+            Manage Staff
+          </button>
+          <div
+            style="
+              width: 200px;
+              height: 120px;
+              border-radius: 5px;
+              background-color: black;
+              position: absolute;
+              bottom: 65px;
+              left: 400px;
+            "
+            id="StaffMenu"
+          >
+            <button class="ButtonChoice" id="StaffCalendar" type="button">
+              Calender
+            </button>
+            <button class="ButtonChoice" id="RosterSetup" type="button">
+              Roster Days
+            </button>
+          </div>
+          <button class="OtherButtonChoice" id="ExtendStay" type="button">
+            Manage Payments
+          </button>
+          <button class="OtherButtonChoice" id="ManageWifi" type="button">
+            Manage WiFi
+          </button>
+          <button class="OtherButtonChoice" id="Insta" type="button">
+            Analytics
+          </button>
+          <button class="OtherButtonChoice" id="Reviews" type="button">
+            Reviews
+          </button>
+          <button class="OtherButtonChoice" id="Website" type="button">
+            Website
+          </button>
+          <button class="OtherButtonChoice" id="Bookings" type="button">
+            Bookings.com
+          </button>
+          <button class="OtherButtonChoice" id="gmaps" type="button">
+            Google Maps
+          </button>
+        </div>
+      </div>
+      <div class="RightBody">
+        <div class="ReservationsTextContainer">
+          <h2 class="ReservationsText">Dashboard</h2>
+          <div style="display: flex; flex-direction: row">
+            <button
+              style="width: 250px; height: 50px"
+              class="OtherButtonChoice"
+              type="button"
+              id="CreateReservationBtnTwo"
+            >
+              Live Reservation
+            </button>
+            <button
+              style="width: 250px; height: 50px"
+              class="OtherButtonChoice"
+              id="CheckOutBtn"
+              type="button"
+            >
+              Check Out
+            </button>
+          </div>
+          <button
+            style="width: 100px"
+            class="ButtonChoice"
+            type="button"
+            id="MainCalendar"
+          >
+            <img
+              style="width: 60px"
+              src="static/resources/Calendar.png"
+              alt=""
+            />
+          </button>
+        </div>
+        <div class="SecondRow">
+          <div class="ReservationsDetails">
+            <div>
+              <p class="ReservationsDetailsTitle">Reservation Details</p>
+              <div class="ReservationsDetailsSubRow">
+                <div class="ReservationsDetailsSubColumn">
+                  <img
+                    src="static/resources/AllBookings.png"
+                    class="ImgStyle"
+                  />
+                  <h4 id="AllBookings" class="BoldText">0</h4>
+                  <p>Bookings</p>
+                </div>
+                <div class="ReservationsDetailsSubColumn">
+                  <img src="static/resources/CheckOut.png" class="ImgStyle" />
+                  <h4 id="AllCheckIn" class="BoldText">0</h4>
+                  <p>Check-in</p>
+                </div>
+                <div class="ReservationsDetailsSubColumn">
+                  <img src="static/resources/CheckIn.png" class="ImgStyle" />
+                  <h4 id="AllCheckOut" class="BoldText">0</h4>
+                  <p>Check-out</p>
+                </div>
+                <div class="ReservationsDetailsSubColumn">
+                  <img src="static/resources/Now.png" class="ImgStyle" />
+                  <h4 id="AllNow" class="BoldText">0</h4>
+                  <p>Present</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="AvailableRooms">
+            <div>
+              <p class="ReservationsDetailsTitleWhite">Available Rooms</p>
+              <div class="ReservationsDetailsSubRow">
+                <div class="ReservationsDetailsSubColumnWhite">
+                  <img src="static/resources/Rooms.png" class="ImgStyle" />
+                  <h4 id="AllRooms" class="BoldText">0</h4>
+                  <p>Rooms</p>
+                </div>
+                <div class="ReservationsDetailsSubColumnWhite">
+                  <img src="static/resources/FreeRooms.png" class="ImgStyle" />
+                  <h4 id="AvailableRooms" class="BoldText">0</h4>
+                  <p>Available</p>
+                </div>
+                <div class="ReservationsDetailsSubColumnWhite">
+                  <img src="static/resources/Cancel.png" class="ImgStyle" />
+                  <h4 id="OccupiedRooms" class="BoldText">0</h4>
+                  <p>Occupied</p>
+                </div>
+                <div class="ReservationsDetailsSubColumnWhite">
+                  <img src="static/resources/Cleaning.png" class="ImgStyle" />
+                  <h4 id="CleaningRooms" class="BoldText">0</h4>
+                  <p>Not Ready</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ThirdRow">
+          <div class="RevenueBookingColumn">
+            <div class="TotalRevenue">
+              <div style="display: flex; flex-direction: column">
+                <p style="color: black; margin: 10px; font-weight: 700">
+                  Customers Per Month
+                </p>
+                <svg id="barChart" width="550" height="200"></svg>
+              </div>
+            </div>
+            <div class="BookingDetails">
+              <div class="RoomGridWrapper">
+                <div class="GridRow">
+                  <div id="EV5C09" class="GridAlert">
+                    <p class="GridTextColor">EV5C09</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV5D09" class="GridAlert">
+                    <p class="GridTextColor">EV5D09</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV5A05" class="GridAlert">
+                    <p class="GridTextColor">EV5A05</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV5B05" class="GridAlert">
+                    <p class="GridTextColor">EV5B05</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV5C10" class="GridAlert">
+                    <p class="GridTextColor">EV5C10</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                  <div id="EV5D10" class="GridAlert">
+                    <p class="GridTextColor">EV5D10</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                </div>
+                <div class="GridRow">
+                  <div id="EV4C07" class="GridAlert">
+                    <p class="GridTextColor">EV4C07</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV4D07" class="GridAlert">
+                    <p class="GridTextColor">EV4D07</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV4A04" class="GridAlert">
+                    <p class="GridTextColor">EV4A04</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV4B04" class="GridAlert">
+                    <p class="GridTextColor">EV4B04</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV4C08" class="GridAlert">
+                    <p class="GridTextColor">EV4C08</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                  <div id="EV4D08" class="GridAlert">
+                    <p class="GridTextColor">EV4D08</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                </div>
+                <div class="GridRow">
+                  <div id="EV3C05" class="GridAlert">
+                    <p class="GridTextColor">EV3C05</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV3D05" class="GridAlert">
+                    <p class="GridTextColor">EV3D05</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV3A03" class="GridAlert">
+                    <p class="GridTextColor">EV3A03</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV3B03" class="GridAlert">
+                    <p class="GridTextColor">EV3B03</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV3C06" class="GridAlert">
+                    <p class="GridTextColor">EV3C06</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                  <div id="EV3D06" class="GridAlert">
+                    <p class="GridTextColor">EV3D06</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                </div>
+                <div class="GridRow">
+                  <div id="EV2C03" class="GridAlert">
+                    <p class="GridTextColor">EV2C03</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV2D03" class="GridAlert">
+                    <p class="GridTextColor">EV2D03</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV2A02" class="GridAlert">
+                    <p class="GridTextColor">EV2A02</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV2B02" class="GridAlert">
+                    <p class="GridTextColor">EV2B02</p>
+                    <p class="GridTextColor1">Family Suite</p>
+                  </div>
+                  <div id="EV2D04" class="GridAlert">
+                    <p class="GridTextColor">EV2D04</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                  <div id="EV2C04" class="GridAlert">
+                    <p class="GridTextColor">EV2C04</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                </div>
+                <div class="GridRow">
+                  <div id="EV1C01" class="GridAlert">
+                    <p class="GridTextColor">EV1C01</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV1D01" class="GridAlert">
+                    <p class="GridTextColor">EV1D01</p>
+                    <p class="GridTextColor1">Standard</p>
+                  </div>
+                  <div id="EV1A01" class="GridAlert">
+                    <p class="GridTextColor">EV1A01</p>
+                    <p class="GridTextColor1">Executive</p>
+                  </div>
+                  <div id="EV1B01" class="GridAlert">
+                    <p class="GridTextColor">EV1B01</p>
+                    <p class="GridTextColor1">Executive</p>
+                  </div>
+                  <div id="EV1D02" class="GridAlert">
+                    <p class="GridTextColor">EV1D02</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                  <div id="EV1C02" class="GridAlert">
+                    <p class="GridTextColor">EV1C02</p>
+                    <p class="GridTextColor1">Deluxe</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="VisitorsAmountColumn">
+            <div class="VisitorsOverTime">
+              <svg width="320" height="380" id="multiLineChart"></svg>
+            </div>
+            <div id="AmountDetails" class="AmountDetails"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="static/index.js"></script>
+  </body>
+</html>
