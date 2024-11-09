@@ -9,10 +9,29 @@ const firebaseConfig = {
   appId: "1:103968652296:web:79a1bfc1495062779165bd",
   measurementId: "G-7HR89GF4K9",
 };
-
+const CloseButton = document.getElementById("close");
+CloseButton.addEventListener("click", () => {
+  window.history.back();
+});
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+var ReservationID = "";
+var PrePaymentValue = 0;
+var TotalEveryCost = 1;
+var CheckInDate = "";
+var OldDate = "";
+var NewDate = "";
+var RoomNameValue = "";
+
+var DiscountTwoWeeks = 10;
+var DiscountFourWeeks = 20;
+const KitchenCostPerDay = 100;
+const RoomServiceCostPerDay = 10;
+const StandardRoomPrice = 350;
+const DeluxeRoomPrice = 400;
+const FamilySuiteRoomPrice = 600;
+const ExecutiveRoomPrice = 500;
 
 // Fetch all reservations from the database and display specific fields
 function displayReservations() {
@@ -42,6 +61,8 @@ function displayReservations() {
           // Click event to populate HTML elements with reservation details
           listItem.addEventListener("click", function () {
             // console.log("Reservation Details:", reservationData);
+
+            ReservationID = childSnapshot.key; // Use childSnapshot.key here
 
             // Populate the HTML elements with reservationData
             document.getElementById("FullName").innerText =
@@ -101,6 +122,7 @@ function displayReservations() {
               reservationData.roomType || "N/A";
             document.getElementById("Room").innerText =
               reservationData.roomName || "N/A";
+            RoomNameValue = reservationData.roomName;
             document.getElementById("RoomService").innerText =
               reservationData.RoomService ? "Yes" : "No";
             document.getElementById("Kitchen").innerText =
@@ -108,24 +130,27 @@ function displayReservations() {
             document.getElementById("SpecialRequest").innerText =
               reservationData.specialRequests || "N/A";
 
+            PrePaymentValue = parseFloat(reservationData.PartialPayment);
+
             document.getElementById("PrePayment").innerText =
-              reservationData.PartialPayment || "N/A";
+              reservationData.PartialPayment || "0";
 
             var RoomServiceBillings = document.getElementById(
               "RoomServiceBillings"
             );
+            CheckInDate = reservationData.checkIn;
+            OldDate = reservationData.checkOut;
             var KitchenBillings = document.getElementById("KitchenBillings");
             var RoomServiceCost = 0;
             var NumberOfDays = reservationData.days;
             var SumOfBill = 0;
             var DiscountAmount = 0;
-            var DiscountTwoWeeks = 10;
-            var DiscountFourWeeks = 20;
+
             var TwoWeeks = 14;
             var FourWeeks = 28;
             var PrePayment = reservationData.PartialPayment;
             if (reservationData.RoomService) {
-              RoomServiceCost = 10;
+              RoomServiceCost = RoomServiceCostPerDay;
               RoomServiceBillings.innerText = RoomServiceCost * NumberOfDays;
               SumOfBill = SumOfBill + RoomServiceCost * NumberOfDays;
             } else {
@@ -136,7 +161,7 @@ function displayReservations() {
 
             var KitchenCost = 0;
             if (reservationData.kitchen) {
-              KitchenCost = 10;
+              KitchenCost = KitchenCostPerDay;
               KitchenBillings.innerText = KitchenCost * NumberOfDays;
               SumOfBill = SumOfBill + KitchenCost * NumberOfDays;
             } else {
@@ -151,13 +176,13 @@ function displayReservations() {
 
             var RoomTypeCost = 0;
             if (reservationData.roomType === "Standard") {
-              RoomTypeCost = 350;
+              RoomTypeCost = StandardRoomPrice;
             } else if (reservationData.roomType === "Deluxe") {
-              RoomTypeCost = 400;
-            } else if (reservationData.roomType === "FamilySuite") {
-              RoomTypeCost = 600;
-            } else if (reservationData.roomType === "ExecutiveSuite") {
-              RoomTypeCost = 500;
+              RoomTypeCost = DeluxeRoomPrice;
+            } else if (reservationData.roomType === "Family") {
+              RoomTypeCost = FamilySuiteRoomPrice;
+            } else if (reservationData.roomType === "Executive") {
+              RoomTypeCost = ExecutiveRoomPrice;
             }
             document.getElementById("RoomTypeBillingsValue").innerText =
               RoomTypeCost * NumberOfDays;
@@ -170,11 +195,11 @@ function displayReservations() {
               DiscountAmount = 0;
             }
             document.getElementById("Discount").innerText =
-              DiscountAmount || "N/A";
-            document.getElementById("SumOfBill").innerText = SumOfBill || "N/A";
+              DiscountAmount || "0";
+            document.getElementById("SumOfBill").innerText = SumOfBill || "0";
 
             document.getElementById("Total").innerText =
-              SumOfBill - DiscountAmount - PrePayment || "N/A";
+              SumOfBill - DiscountAmount - PrePayment || "0";
           });
 
           container.appendChild(listItem);
@@ -212,3 +237,114 @@ document
 
 // Call the display function on page load to populate the data
 displayReservations();
+
+const CheckoutButton = document.getElementById("CheckOutBtn");
+CheckoutButton.addEventListener("click", () => {
+  const checkinBillings = document.getElementById("Total");
+
+  TotalEveryCost = parseFloat(checkinBillings.textContent);
+
+  if (ReservationID == "") {
+    alert("Please select a reservation to check out");
+  } else {
+    if (TotalEveryCost == 0) {
+      alert("Check out complete");
+      const roomName = RoomNameValue;
+
+      // Update room status to "Cleaning"
+      const roomRef = database.ref(`rooms/${roomName}`);
+      roomRef
+        .update({
+          Status: "Cleaning",
+        })
+        .then(() => {
+          alert(`Room ${roomName} status updated to "Cleaning".`);
+        })
+        .catch((error) => {
+          console.error("Error updating room status: ", error);
+          alert("Failed to update room status. Please try again.");
+        });
+    } else {
+      const PaymentsPageLink =
+        "../HTMLPages/HTMLPages/LivePayments.html?ReservationID=" +
+        ReservationID;
+      window.open(PaymentsPageLink, "_self");
+    }
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("dateModal");
+  const openModalBtn = document.getElementById("ChangeDateBtn");
+  const closeModalBtn = document.getElementById("closeModal");
+  const saveDateChangeBtn = document.getElementById("saveDateChange");
+
+  // const currentCheckin = document.getElementById("currentCheckin");
+  const currentCheckout = document.getElementById("currentCheckout");
+  const checkinBillings = document.getElementById("CheckinBillings");
+  const checkoutBillings = document.getElementById("CheckoutBillings");
+
+  // const newCheckinInput = document.getElementById("newCheckin");
+  const newCheckoutInput = document.getElementById("newCheckout");
+
+  // Show modal on button click
+  openModalBtn.addEventListener("click", () => {
+    currentCheckin.textContent = checkinBillings.textContent;
+    currentCheckout.textContent = checkoutBillings.textContent;
+
+    modal.style.display = "flex";
+  });
+
+  // Close modal
+  closeModalBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Save date changes
+  saveDateChangeBtn.addEventListener("click", () => {
+    // const newCheckinDate = newCheckinInput.value;
+    const newCheckoutDate = newCheckoutInput.value;
+
+    if (newCheckoutDate) {
+      const reservationRef = database.ref("reservations/" + ReservationID);
+
+      // Split OriginalDate into date and time components
+      const [DateComponent, TimeComponent] = OldDate.split("T");
+
+      // Combine UpdateDate with the time component to create NewDate
+      NewDate = `${newCheckoutDate}T${TimeComponent}`;
+
+      const checkinvalue = new Date(CheckInDate);
+      const checkoutvalue = new Date(NewDate);
+
+      const timeDifference = checkoutvalue.getTime() - checkinvalue.getTime();
+      const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days and round up
+
+      if (numberOfDays <= 0) {
+        alert("Check-out date must be later than check-in date.");
+        location.reload();
+      }
+
+      // Update the PartialPayment field in Firebase
+      reservationRef
+        .update({ checkOut: NewDate, days: numberOfDays })
+        .then(() => {
+          alert("New checkout date set: " + newCheckoutDate + " Refreshing...");
+          modal.style.display = "none";
+          location.reload();
+        })
+        .catch((error) => {
+          console.error("Error updating Checkout Date: ", error);
+        });
+    } else {
+      alert("Please select new check-out date.");
+    }
+  });
+
+  // Close modal if clicked outside content
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});

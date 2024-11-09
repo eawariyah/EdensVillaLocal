@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  background-color: #f3f4f6;
+}
+
+.schedule-container {
+  width: 100%;
+  /* max-width: 1200px; */
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #d1d5db;
+}
+
+th {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.arrival,
+.breakfast,
+.lunch,
+.closing {
+  font-weight: bold;
+}
+
+.arrival {
+  background-color: #cfe8fc;
+}
+
+.breakfast {
+  background-color: #fff3cd;
+}
+
+.lunch {
+  background-color: #ffdfd4;
+}
+
+.closing {
+  background-color: #d4edda;
+}
+th:nth-child(1),
+td:nth-child(1) {
+  min-width: 150px; /* Increase to a larger value, such as 150px or more */
+  width: 150px; /* Optional: set width explicitly */
+}

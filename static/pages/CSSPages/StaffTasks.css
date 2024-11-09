@@ -1,0 +1,22 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.DayColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.TaskColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.TaskRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

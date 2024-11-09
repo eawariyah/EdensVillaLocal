@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../CSSPages/CheckoutPage.css" />
+    <link rel="stylesheet" href="../CSSPages/PaymentPage.css" />
   </head>
   <body>
     <div class="Container">
@@ -33,7 +33,7 @@
       </div>
 
       <div class="SecondRow">
-        <h1>Check Out</h1>
+        <h1>Make Payments</h1>
       </div>
       <div class="ThirdRow">
         <div class="LeftHalf">
@@ -103,10 +103,7 @@
             </div>
           </div>
           <div class="AllGuests">
-            <div style="margin: 10px">
-              <input type="search" placeholder="Search Guest" name="" id="" />
-            </div>
-            <div style="margin: 10px" class="AllGuestsSub"></div>
+            <!-- <img src="../PageResources/Money.png" alt="" /> -->
           </div>
         </div>
         <div class="RightHalf">
@@ -271,19 +268,62 @@
               <div>
                 <div class="RightHalfSecondRowSybTwo">
                   <h2 style="font-size: 24px">GH₵&ThinSpace;</h2>
-                  <h2 style="font-size: 24px" id="Total"></h2>
+                  <h2 style="font-size: 24px" id="Total">0</h2>
                 </div>
               </div>
             </div>
+            <div class="Line"></div>
             <div>
-              <button
-                style="width: 100%; height: 50px"
-                class="OtherButtonChoice"
-                id="CheckOutBtn"
-                type="button"
+              <h1 style="text-align: center">Pay Now</h1>
+              <div
+                style="
+                  width: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  gap: 10px;
+                "
               >
-                Check Out
-              </button>
+                <input
+                  class="PaymentInput"
+                  type="number"
+                  name="PayNow"
+                  id="PayNowInput"
+                />
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <h1>&ThinSpace;/&ThinSpace;</h1>
+                  <div class="RightHalfSecondRowSybTwo">
+                    <h1>GH₵&ThinSpace;</h1>
+                    <h1 id="AmountLeftToPay">0</h1>
+                    <h1>.00</h1>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: row; gap: 10px">
+                <button
+                  style="width: 100%; height: 50px"
+                  class="OtherButtonChoice"
+                  id="MomoBtn"
+                  type="button"
+                >
+                  Momo
+                </button>
+                <button
+                  style="width: 100%; height: 50px"
+                  class="OtherButtonChoice"
+                  id="CashBtn"
+                  type="button"
+                >
+                  Cash
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -291,6 +331,6 @@
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
-    <script src="../JSPages/CheckoutPage.js"></script>
+    <script src="../JSPages/PaymentPage.js"></script>
   </body>
 </html>

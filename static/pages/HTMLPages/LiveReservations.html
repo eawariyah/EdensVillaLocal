@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="../CSSPages/LiveReservations.css" />
   </head>
   <body>
+    <button
+      class="BackButton"
+      id="close"
+      style="text-align: center; width: 10%; margin: 10px"
+      type="button"
+    >
+      &LeftArrow; Back
+    </button>
     <div class="modal-content">
-      <span id="close" class="close">&times;</span>
+      <span style="display: none" id="close" class="close">&times;</span>
     </div>
     <div class="BiggerContainer">
       <div class="container">
@@ -313,13 +321,13 @@
         <p id="statusMessage"></p>
       </div>
       <div class="RightHandSide">
-        <div class="SummaryStats">
+        <div style="display: none" class="SummaryStats">
           <h2>Number of days:&ThinSpace;</h2>
           <p id="days"></p>
           <h2>Amount:&ThinSpace;</h2>
           <p id="amount"></p>
         </div>
-        <div class="Controls">
+        <div style="display: none" class="Controls">
           <button class="ControlButton" id="showAnimation">
             Show Animation
           </button>

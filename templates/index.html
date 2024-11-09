@@ -35,17 +35,41 @@
         <div
           style="
             width: 200px;
-            height: 300px;
+            height: 150px;
             border-radius: 5px;
             background-color: black;
             position: absolute;
             bottom: 25px;
             left: 100px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
           "
           id="SettingsMenu"
         >
-          <button class="ButtonChoice" id="SettingsPageOpen" type="button">
+          <button
+            style="display: flex; justify-content: center; align-items: center"
+            class="ButtonChoice"
+            id="SettingsPageOpen"
+            type="button"
+          >
             Change Password
+          </button>
+          <button
+            style="display: flex; justify-content: center; align-items: center"
+            class="ButtonChoice"
+            id="SettingsPageOpen"
+            type="button"
+          >
+            Key Credentials
+          </button>
+          <button
+            style="display: flex; justify-content: center; align-items: center"
+            class="ButtonChoice"
+            id="SettingsPageOpen"
+            type="button"
+          >
+            Setup
           </button>
         </div>
         <div>
@@ -96,15 +120,78 @@
             id="CreateReservationBtn"
             type="button"
           >
-            Tentative Reservations
+            Notifications
           </button>
-          <button class="OtherButtonChoice" id="ManageRoomsBtn" type="button">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <button
+              class="OtherButtonChoice"
+              id="ManageRoomBtn"
+              onclick="RoomMGMT()"
+              type="button"
+            >
+              Manage Rooms
+            </button>
+            <div
+              id="RoomMenu"
+              style="
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 10px;
+              "
+            >
+              <button id="ApproveRoom" style="width: 100%">Approve Room</button>
+              <button id="AddRoom" style="width: 100%">Add Room</button>
+              <button id="ManageRooms" style="width: 100%">Manage Rooms</button>
+            </div>
+          </div>
+          <!-- <button class="OtherButtonChoice" id="ManageRoomsBtn" type="button">
             Manage Rooms
-          </button>
+          </button> -->
           <button class="OtherButtonChoice" id="ViewHistoryBtn" type="button">
             View History
           </button>
-          <button
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <button
+              class="OtherButtonChoice"
+              id="ManageStaffBtn"
+              onclick="openStaff()"
+              type="button"
+            >
+              Manage Staff
+            </button>
+            <div
+              id="StaffMenu"
+              style="
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 10px;
+              "
+            >
+              <button id="StaffCalendar" style="width: 100%">Calendar</button>
+              <button id="StaffTasks" style="width: 100%">Tasks</button>
+            </div>
+          </div>
+
+          <!-- <button
             class="OtherButtonChoice"
             id="ManageStaffBtn"
             onclick="openStaff()"
@@ -130,7 +217,7 @@
             <button class="ButtonChoice" id="RosterSetup" type="button">
               Roster Days
             </button>
-          </div>
+          </div> -->
           <button class="OtherButtonChoice" id="ExtendStay" type="button">
             Manage Payments
           </button>

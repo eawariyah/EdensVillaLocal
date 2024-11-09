@@ -374,8 +374,7 @@ document
       .then(() => {
         const reservationID = newReservationRef.key;
         const PaymentsPageLink =
-          "http://127.0.0.1:5500/static/pages/HTMLPages/PaymentPage.html?ReservationID=" +
-          reservationID;
+          "../HTMLPages/LivePayments.html?ReservationID=" + reservationID;
         // After reservation submission, update the room status to "Unavailable"
         const roomName = reservationData.roomName;
         const roomRef = database.ref("rooms/" + roomName);

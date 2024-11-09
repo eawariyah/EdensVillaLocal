@@ -1,0 +1,2 @@
+var RoomsToClean = [];
+var RoomServiceRooms = [];
