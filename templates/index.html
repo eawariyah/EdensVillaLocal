@@ -133,6 +133,39 @@
           >
             <button
               class="OtherButtonChoice"
+              id="SpecialReservationBtn"
+              onclick="SpecialReservation()"
+              type="button"
+            >
+              Special Reservations
+            </button>
+            <div
+              id="SpecialReservationMenu"
+              style="
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 10px;
+              "
+            >
+              <button id="FutureReservations" style="width: 100%">
+                Future
+              </button>
+              <button id="BulkReservations" style="width: 100%">Bulk</button>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <button
+              class="OtherButtonChoice"
               id="ManageRoomBtn"
               onclick="RoomMGMT()"
               type="button"

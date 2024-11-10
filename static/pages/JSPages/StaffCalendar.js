@@ -1,3 +1,7 @@
+const CloseButton = document.getElementById("close");
+CloseButton.addEventListener("click", () => {
+  window.history.back();
+});
 var Staff = ["Blessing", "Fadilatu"];
 const RoomsDB = [
   "EV4A04",

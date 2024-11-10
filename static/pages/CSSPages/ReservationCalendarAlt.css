@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+/* h1 {
+  color: #333;
+} */
+
+#calendar-container {
+  margin-top: 20px;
+  overflow-x: auto;
+  display: flex;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #1e1e1e;
+  font-weight: bold;
+}
+
+td.today {
+  background-color: rgb(71, 158, 245);
+  color: white;
+}
+
+td.event {
+  color: white;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
+input[type="number"] {
+  width: 50px;
+  text-align: center;
+}

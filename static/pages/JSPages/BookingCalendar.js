@@ -296,7 +296,7 @@ EventSection(
   "EV5C10",
   "2024-10-26T15:31",
   "2024-11-02T15:31",
-  "Test",
+  "Mr. Smith",
   "Blue",
   "White"
 );

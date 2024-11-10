@@ -34,6 +34,19 @@ function RoomMGMT() {
   }
 }
 
+function SpecialReservation() {
+  var drawer = document.getElementById("SpecialReservationMenu");
+  var drawerBtn = document.getElementById("SpecialReservationBtn");
+
+  if (drawer.style.display === "flex") {
+    drawer.style.display = "none";
+    drawerBtn.style.height = "auto";
+  } else {
+    drawer.style.display = "flex";
+    drawerBtn.style.height = "100px";
+  }
+}
+
 const ApproveRoomBtn = document.getElementById("ApproveRoom");
 ApproveRoomBtn.addEventListener("click", () => {
   window.open("../static/pages/HTMLPages/ApproveRooms.html", "_self");
@@ -47,6 +60,11 @@ AddRoomBtn.addEventListener("click", () => {
 const ManageRoomsButtonButton = document.getElementById("ManageRooms");
 ManageRoomsButtonButton.addEventListener("click", () => {
   window.open("../static/pages/HTMLPages/AllRooms.html", "_self");
+});
+
+const FutureReservationsButton = document.getElementById("FutureReservations");
+FutureReservationsButton.addEventListener("click", () => {
+  window.open("../static/pages/HTMLPages/FutureReservations.html", "_self");
 });
 
 const StaffCalendarButtonButton = document.getElementById("StaffCalendar");
@@ -91,7 +109,7 @@ SettingsPage.addEventListener("click", () => {
 
 const MainCalendarBtn = document.getElementById("MainCalendar");
 MainCalendarBtn.addEventListener("click", () => {
-  window.open("../static/pages/HTMLPages/WeekCalendar.html", "_self");
+  window.open("../static/pages/HTMLPages/ReservationCalendar.html", "_self");
 });
 
 // const StaffCalendarButton = document.getElementById("StaffCalendar");

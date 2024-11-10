@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./resources/EdenVilla.jpg" />
+    <title>Eden Villa</title>
+    <link rel="stylesheet" href="../CSSPages/FutureReservations.css" />
+    <link rel="stylesheet" href="../CSSPages/ReservationCalendarAlt.css" />
+  </head>
+  <body>
+    <button
+      class="BackButton"
+      id="close"
+      style="text-align: center; width: 10%; margin: 10px"
+      type="button"
+    >
+      &LeftArrow; Back
+    </button>
+
+    <div class="BiggerContainer">
+      <div class="container">
+        <h1>Check In</h1>
+        <form id="reservation-form">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+            "
+          >
+            <label for="fullName">Full Name:</label>
+            <div style="display: flex; flex-direction: row">
+              <label for="Company">Company</label>
+              <input
+                type="checkbox"
+                style="width: 50%"
+                id="companyCheckbox"
+                name="company"
+              />
+            </div>
+          </div>
+          <div class="nameInput" id="nameInput">
+            <input
+              type="text"
+              id="FirstName"
+              placeholder="First Name"
+              style="width: 49%"
+              name="fullName"
+            />
+            <input
+              type="text"
+              id="LastName"
+              placeholder="Last Name"
+              style="width: 49%"
+              name="fullName"
+            />
+          </div>
+
+          <input
+            type="text"
+            class="companyName"
+            placeholder="Eden Villa"
+            id="companyInput"
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="eden@edenvilla.com"
+            name="email"
+            required
+          />
+
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" name="phone" required />
+
+          <!-- <label for="phone">Date of Birth:</label>
+          <input type="date" id="DOB" name="phone" required /> -->
+
+          <h1>Biometrics</h1>
+
+          <label for="IDType">ID Type:</label>
+          <input type="text" id="IDType" list="IDTypeList" required />
+          <datalist id="IDTypeList">
+            <option value="GhanaCard">Ghana Card</option>
+            <option value="Passport">Passport</option>
+            <option value="Voters">Voters</option>
+            <option value="DrivingLicense">Driving License</option>
+            <option value="SSNIT">SSNIT</option>
+            <option value="HealthInsurance">Health Insurance</option></datalist
+          ><br />
+
+          <video id="video" width="320" height="240" autoplay></video>
+
+          <!-- Button to take the picture -->
+          <button type="button" id="capture">Take Picture</button>
+
+          <!-- Canvas to show the captured image -->
+          <canvas id="canvas" width="320" height="240"></canvas>
+
+          <!-- <label for="phone">ID Value:</label>
+          <input type="text" id="IDValue" name="phone" required /> -->
+
+          <h1>Duration</h1>
+
+          <label for="checkin">Check-In Date:</label>
+          <input type="datetime-local" id="checkin" name="checkin" required />
+
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+            "
+          >
+            <label for="checkout">Checkout Date:</label>
+            <div style="display: flex; flex-direction: row">
+              <label for="Company">Days</label>
+              <input
+                type="checkbox"
+                style="width: 50%"
+                id="DaysInputCheckbox"
+                name="DaysInput"
+              />
+            </div>
+          </div>
+          <div>
+            <!-- <label for="checkout">Check-Out Date:</label> -->
+            <input
+              type="datetime-local"
+              id="checkout"
+              name="checkout"
+              required
+            />
+            <div
+              id="DaysInputDiv"
+              style="
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+              "
+            >
+              <input
+                type="number"
+                class="DaysInput"
+                style="display: flex; margin-bottom: 0"
+                placeholder="How many days?"
+                id="DaysInput"
+              />
+              <div
+                style="
+                  width: 100%;
+                  height: 37px;
+                  border-radius: 4px;
+                  margin-top: 0;
+                  background-color: #1e1e1e;
+                "
+              >
+                <p style="color: red" id="CalendarDays"></p>
+              </div>
+            </div>
+            <div id="DiscountDisplayDiv" class="RedText">
+              <p style="color: red">Discount at &ThinSpace;</p>
+              <p style="color: red" id="DiscountPercent"></p>
+              <p style="color: red">% for &ThinSpace;</p>
+              <p style="color: red" id="DiscountDays"></p>
+              <p style="color: red">&ThinSpace;Days Applied &ThinSpace;</p>
+            </div>
+          </div>
+
+          <h1>Payments</h1>
+
+          <label for="RoomService">Room Service:</label>
+          <div
+            id="DaysInputDiv"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+            "
+          >
+            <select id="RoomService" name="RoomService" required>
+              <option value="none">--Select--</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div id="RoomServiceDisplayDiv" class="RedText">
+              <p style="color: red">+ GH₵ &ThinSpace;</p>
+              <p style="color: red" id="RoomServiceDisplay"></p>
+              <p style="color: red">.00</p>
+            </div>
+          </div>
+
+          <!-- <label for="Balcony">Balcony:</label>
+          <select id="Balcony" name="Balcony" required>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select> -->
+
+          <label for="Kitchen">Kitchen:</label>
+
+          <div
+            id="DaysInputDiv"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+            "
+          >
+            <select id="Kitchen" name="Kitchen" required>
+              <option value="none">--Select--</option>
+
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div id="KitchenDisplayDiv" class="RedText">
+              <p style="color: red">+ GH₵ &ThinSpace;</p>
+              <p style="color: red" id="KitchenDisplay"></p>
+              <p style="color: red">.00</p>
+            </div>
+          </div>
+
+          <label for="roomType">Room Type:</label>
+
+          <div
+            id="DaysInputDiv"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+            "
+          >
+            <select id="roomType" name="roomType" required>
+              <option value="">--Select Room Type--</option>
+              <option value="Standard">Standard</option>
+              <option value="Deluxe">Deluxe</option>
+              <option value="Family">Family</option>
+              <option value="Executive">Executive Suite</option>
+            </select>
+            <div id="RoomTypeDisplayDiv" class="RedText">
+              <p style="color: red">+ GH₵ &ThinSpace;</p>
+              <p style="color: red" id="RoomTypeDisplay"></p>
+              <p style="color: red">.00</p>
+            </div>
+          </div>
+
+          <label for="roomName">Room</label>
+          <select id="roomName" name="roomType" required>
+            <option value="">--Select Room--</option>
+          </select>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <label for="EarlyPayments">Pay Now:</label>
+            <div>
+              <div style="justify-content: flex-end" class="RedText">
+                <p style="color: red">Sum: &ThinSpace;</p>
+
+                <p style="color: red">GH₵ &ThinSpace;</p>
+                <p style="color: red" id="TotalRun"></p>
+                <p style="color: red">.00</p>
+              </div>
+              <div id="DiscountBlock">
+                <div style="justify-content: flex-end" class="RedText">
+                  <p style="color: red">Discount: -&ThinSpace;</p>
+
+                  <p style="color: red">GH₵ &ThinSpace;</p>
+                  <p style="color: red" id="DiscountValue"></p>
+                  <p style="color: red">.00</p>
+                </div>
+                <div style="justify-content: flex-end" class="RedText">
+                  <p style="color: red">Total: &ThinSpace;</p>
+
+                  <p style="color: red">GH₵ &ThinSpace;</p>
+                  <p style="color: red" id="TotalRunSum"></p>
+                  <p style="color: red">.00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <select id="LivePayments" name="EarlyPayments" required>
+            <option value="none">--Select--</option>
+
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+
+          <!-- <button onclick="toggleDrawer()" id="toggleVisibility" type="button">
+            Preview
+          </button> -->
+
+          <h1>Remarks</h1>
+
+          <label for="requests">Remark:</label>
+          <textarea
+            id="requests"
+            name="requests"
+            placeholder="Any specific remark?"
+            rows="3"
+          ></textarea>
+
+          <button class="Done" id="Done" type="submit">
+            Submit Reservation
+          </button>
+        </form>
+        <p id="statusMessage"></p>
+      </div>
+      <div class="RightHandSide">
+        <div style="display: none" class="SummaryStats">
+          <h2>Number of days:&ThinSpace;</h2>
+          <p id="days"></p>
+          <h2>Amount:&ThinSpace;</h2>
+          <p id="amount"></p>
+        </div>
+        <div style="display: none" class="Controls">
+          <button class="ControlButton" id="showAnimation">
+            Show Animation
+          </button>
+          <button class="ControlButton" id="checkoutButton">Checkout</button>
+          <!-- <button class="ControlButton" style="display: none" id="addRooms"> -->
+          <button class="ControlButton" id="TimeTable">Time Table</button>
+          <button class="ControlButton" id="renew">Extend Stay</button>
+          <button class="ControlButton" id="viewHistory">View History</button>
+        </div>
+        <div>
+          <div
+            style="
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <button
+              class="BackButton"
+              id="close"
+              style="
+                text-align: center;
+                width: 10%;
+                margin: 10px;
+                display: none;
+              "
+              type="button"
+            >
+              &LeftArrow; Back
+            </button>
+            <div style="display: none">
+              <label for="week-count">Number of weeks to display:</label>
+              <input
+                type="number"
+                id="week-count"
+                value="1"
+                min="1"
+                max="10"
+                onchange="updateWeeksToShow()"
+              />
+            </div>
+            <div style="display: flex; flex-direction: row">
+              <button onclick="changeWeek(-1)">Previous Week</button>
+              <button onclick="changeWeek(1)">Next Week</button>
+            </div>
+          </div>
+
+          <div id="calendar-container"></div>
+        </div>
+      </div>
+    </div>
+    <div id="snackbar" class="hide">User Registered Successfully!</div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>
+    <script defer src="../JSPages/FutureReservations.js"></script>
+    <script defer src="main.js"></script>
+    <!-- <script src="../JSPages/ReservationCalendarAlt.js"></script> -->
+  </body>
+</html>

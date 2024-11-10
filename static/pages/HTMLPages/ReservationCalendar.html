@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Calendar</title>
+    <link rel="stylesheet" href="../CSSPages/ReservationCalendar.css" />
+  </head>
+  <body>
+    <!-- <h1>Weekly Room Schedule</h1> -->
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
+      <button
+        class="BackButton"
+        id="close"
+        style="text-align: center; width: 10%; margin: 10px"
+        type="button"
+      >
+        &LeftArrow; Back
+      </button>
+      <div>
+        <label for="week-count">Number of weeks to display:</label>
+        <input
+          type="number"
+          id="week-count"
+          value="1"
+          min="1"
+          max="10"
+          onchange="updateWeeksToShow()"
+        />
+      </div>
+      <div>
+        <button onclick="changeWeek(-1)">Previous Week</button>
+        <button onclick="changeWeek(1)">Next Week</button>
+      </div>
+    </div>
+
+    <div id="calendar-container"></div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/ReservationCalendar.js"></script>
+  </body>
+</html>
