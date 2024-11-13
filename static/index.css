@@ -1,9 +1,8 @@
-body{
+body {
   color: white;
   background-color: #000000;
   font-family: Arial, Helvetica, sans-serif;
   /* height: 100vh; */
-  
 }
 
 #SettingsMenu {
@@ -14,7 +13,7 @@ body{
   display: none;
 }
 
-.logoImg{
+.logoImg {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,28 +26,25 @@ body{
   justify-content: center;
   /* align-items: center; */
   flex-direction: row;
-  
 }
 
-.MenuItems{
+.MenuItems {
   display: flex;
   flex-direction: column;
   /* height: 100vh; */
   width: 350px;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   border-radius: 8px 0px 0px 8px;
-  
 }
 
-.logoColumn{
-display: flex;
-flex-direction: row;
-/* align-items: center; */
-/* justify-content: center; */
-margin-top: 10px;
-margin-left: 10px;
-/* margin-bottom: auto; */
-
+.logoColumn {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  /* justify-content: center; */
+  margin-top: 10px;
+  margin-left: 10px;
+  /* margin-bottom: auto; */
 }
 
 label {
@@ -73,8 +69,6 @@ textarea {
   border-radius: 4px;
 }
 
-
-
 button {
   font-size: 16px;
   /* padding: 10px 20px; */
@@ -95,7 +89,6 @@ button {
 .ButtonChoice {
   background-color: #000000;
   color: white;
-
 }
 .ButtonChoice:hover {
   box-shadow: 0 0 20px #141414, 0 0 30px #494949;
@@ -105,7 +98,6 @@ button {
 .OtherButtonChoice {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
-
 }
 .OtherButtonChoice:hover {
   box-shadow: 0 0 20px #1f1f1f, 0 0 30px #1f1f1f;
@@ -114,17 +106,16 @@ button {
   color: white;
 }
 
-.buttonsColumn{
+.buttonsColumn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* margin-top: auto; */
   /* margin-bottom: auto; */
-  
 }
 
-.RightBody{
+.RightBody {
   display: flex;
   flex-direction: column;
 
@@ -138,60 +129,56 @@ button {
   background-color: #3f3f3f;
 }
 
-.ReservationsText{
-  margin:10px;
+.ReservationsText {
+  margin: 10px;
   font-size: 30px;
   font-weight: 500;
 }
 
-.ReservationsTextContainer{
+.ReservationsTextContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 20px;
-
 }
 
-.SecondRow{
+.SecondRow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0px 10px 0px 10px;
   /* gap: 20px; */
-
 }
 
-.AvailableRooms{
+.AvailableRooms {
   width: 500px;
   height: 150px;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   border-radius: 8px;
   margin-left: 5px;
-  
 }
 
-.ReservationsDetails{
+.ReservationsDetails {
   width: 500px;
   height: 150px;
   border-radius: 8px;
 
   background-color: #ffffff;
   margin-right: 5px;
-
 }
 
-.ThirdRow{
+.ThirdRow {
   display: flex;
   flex-direction: row;
   margin: 10px;
 }
-.RevenueBookingColumn{
+.RevenueBookingColumn {
   display: flex;
   flex-direction: column;
 }
 
-.TotalRevenue{
+.TotalRevenue {
   display: flex;
   width: 550px;
   height: 250px;
@@ -200,7 +187,7 @@ button {
   margin-bottom: 10px;
 }
 
-.BookingDetails{
+.BookingDetails {
   display: flex;
   width: 550px;
   height: 380px;
@@ -208,7 +195,7 @@ button {
   border-radius: 8px;
 }
 
-.VisitorsAmountColumn{
+.VisitorsAmountColumn {
   display: flex;
   flex-direction: column;
 }
@@ -297,7 +284,7 @@ button {
   /* font-weight: bold; */
   margin: 10px;
 }
-.AmountDetails{
+.AmountDetails {
   display: flex;
   width: 320px;
   height: 250px;
@@ -305,41 +292,44 @@ button {
   border-radius: 8px;
   margin-left: 10px;
   background-color: #f0f8ff;
-    border-radius: 12px;
-    /* padding: 20px; */
-    font-family: Arial, sans-serif;
-    color: #333;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-  
+  border-radius: 12px;
+  /* padding: 20px; */
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
 }
 
-.ReservationsDetailsTitle{
-  color: black; font-weight: 700; margin: 10px
+.ReservationsDetailsTitle {
+  color: black;
+  font-weight: 700;
+  margin: 10px;
 }
 
-.ReservationsDetailsTitleWhite{
-  color: rgb(255, 255, 255); font-weight: 700; margin: 10px
+.ReservationsDetailsTitleWhite {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  margin: 10px;
 }
 
-
-.ReservationsDetailsSubRow{
+.ReservationsDetailsSubRow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0px 10px 0px 10px;
 }
 
-.ImgStyle{
-  width: 25px; height: 25px
+.ImgStyle {
+  width: 25px;
+  height: 25px;
 }
 
-.ReservationsDetailsSubColumn{
+.ReservationsDetailsSubColumn {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -350,7 +340,7 @@ button {
   padding: 10px;
 }
 
-.ReservationsDetailsSubColumnWhite{
+.ReservationsDetailsSubColumnWhite {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -361,13 +351,13 @@ button {
   padding: 10px;
 }
 
-.BoldText{
+.BoldText {
   font-weight: bolder;
   height: 0px;
 }
 
 .bar {
-  fill: #1E1E1E;
+  fill: #1e1e1e;
 }
 .bar:hover {
   fill: rgb(0, 0, 0);
@@ -375,8 +365,29 @@ button {
 .axis {
   font: 10px sans-serif;
 }
-.x-label, .y-label {
+.x-label,
+.y-label {
   font: 12px sans-serif;
   fill: black;
 }
 
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#NewNotification {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: red;
+  margin-left: 10px;
+  animation: flash 1s infinite; /* 1 second flashing animation */
+}

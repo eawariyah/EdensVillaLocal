@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="../CSSPages/AdminPage.css" />
+  </head>
+  <body>
+    <button
+      class="BackButton"
+      id="close"
+      style="text-align: center; width: 10%; margin: 10px"
+      type="button"
+    >
+      &LeftArrow; Back
+    </button>
+    <div class="container">
+      <h2>Inventory Management</h2>
+      <div class="tableContainer">
+        <table id="inventoryTable">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Last Price</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows will be added here dynamically -->
+          </tbody>
+        </table>
+        <button onclick="addRow()">Add Item</button>
+        <button onclick="saveInventory()">Save Items</button>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/AdminPage.js"></script>
+  </body>
+</html>

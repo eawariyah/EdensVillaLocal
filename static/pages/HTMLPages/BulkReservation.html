@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulk Room Reservation</title>
+    <link rel="stylesheet" href="../CSSPages/BulkReservation.css" />
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
+      <button
+        class="BackButton"
+        id="close"
+        style="text-align: center; width: 10%"
+        type="button"
+      >
+        &LeftArrow; Back
+      </button>
+      <button id="OpenDrawer" onclick="toggleDrawer()" style="margin-top: 20px">
+        View All Bulk Reservations
+      </button>
+    </div>
+    <div class="container">
+      <div class="modal" id="reservationModal">
+        <div class="reservationLength">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <label for="ReservationStartDay">Reservation Start Day:</label>
+            <input id="ReservationStartDay" type="date" />
+          </div>
+          <p>-</p>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <label for="ReservationEndDay">Reservation End Day:</label>
+            <input id="ReservationEndDay" type="date" />
+          </div>
+        </div>
+        <div class="bioData">
+          <label for="GroupName">Organization Name:</label>
+          <input id="GroupName" type="text" />
+          <label for="GroupPurpose">Organization Purpose:</label>
+          <input id="GroupPurpose" type="text" />
+          <button onclick="saveBulkReservation()">Save Reservation</button>
+        </div>
+      </div>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <h1 id="Name">Choose Organization</h1>
+        <h2 id="Purpose">Choose Purpose</h2>
+        <div style="display: flex; flex-direction: row">
+          <h3 id="StartDateValue"></h3>
+          <h3>&ThinSpace; - &ThinSpace;</h3>
+          <h3 id="EndDateValue"></h3>
+        </div>
+
+        <div class="tableContainer">
+          <table id="SubReservations">
+            <thead>
+              <tr>
+                <th>Count</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Role</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Days Spent</th>
+                <th>Room</th>
+                <th>Room Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <button onclick="addRow()">Add Row</button>
+          <button onclick="saveRows()">Save Rows</button>
+        </div>
+      </div>
+
+      <div class="Drawer">
+        <button
+          onclick="toggleDrawer()"
+          style="margin-top: 20px; margin-bottom: 20px"
+        >
+          Close Reservations Overview
+        </button>
+        <table id="SubReservationsOverview">
+          <thead>
+            <tr>
+              <th>Organization Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <button onclick="openModal()">New Bulk Reservation</button>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/BulkReservation.js"></script>
+  </body>
+</html>

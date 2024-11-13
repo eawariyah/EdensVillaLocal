@@ -185,6 +185,34 @@ function renderCalendar() {
       );
     });
   });
+  database.ref("futurereservations").once("value", (snapshot) => {
+    snapshot.forEach((reservation) => {
+      const reservationData = reservation.val();
+
+      EventSection(
+        reservationData.roomName,
+        reservationData.checkIn,
+        reservationData.checkOut,
+        reservationData.fullName,
+        "#f4b084",
+        "black"
+      );
+    });
+  });
+  database.ref("reservations").once("value", (snapshot) => {
+    snapshot.forEach((reservation) => {
+      const reservationData = reservation.val();
+
+      EventSection(
+        reservationData.roomName,
+        reservationData.checkIn,
+        reservationData.checkOut,
+        reservationData.fullName,
+        "white",
+        "blue"
+      );
+    });
+  });
 }
 
 function isToday(date) {
@@ -627,32 +655,21 @@ document
     newReservationRef
       .set(reservationData)
       .then(() => {
+        alert("Reservation submitted successfully!");
+        document.getElementById("reservation-form").reset();
         const reservationID = newReservationRef.key;
         const PaymentsPageLink =
-          "../HTMLPages/LivePayments.html?ReservationID=" + reservationID;
+          "../HTMLPages/FuturePayments.html?ReservationID=" + reservationID;
         // After reservation submission, update the room status to "Unavailable"
         const roomName = reservationData.roomName;
         const roomRef = database.ref("rooms/" + roomName);
+        var ToPaymentsPage = document.getElementById("LivePayments").value;
 
-        roomRef
-          .update({ Status: "Unavailable" })
-          .then(() => {
-            alert(
-              "Reservation submitted and room status updated successfully!"
-            );
-            var ToPaymentsPage = document.getElementById("LivePayments").value;
-
-            if (ToPaymentsPage == "true") {
-              window.open(PaymentsPageLink, "_self");
-            } else {
-              window.history.back();
-            }
-
-            // location.reload();
-          })
-          .catch((error) => {
-            console.error("Error updating room status: ", error);
-          });
+        if (ToPaymentsPage == "true") {
+          window.open(PaymentsPageLink, "_self");
+        } else {
+          window.history.back();
+        }
       })
       .catch((error) => {
         console.error("Error submitting reservation: ", error);
@@ -827,12 +844,12 @@ function populateRoomNames(selectedRoomType) {
   if (roomData[selectedRoomType]) {
     roomData[selectedRoomType].forEach((room) => {
       // Check if the room status is "Available"
-      if (room.Status === "Available") {
-        const option = document.createElement("option");
-        option.value = room.roomName; // Set the room name as the value
-        option.textContent = room.roomName; // Set the room name as the visible text
-        roomSelect.appendChild(option);
-      }
+      // if (room.Status === "Available") {
+      const option = document.createElement("option");
+      option.value = room.roomName; // Set the room name as the value
+      option.textContent = room.roomName; // Set the room name as the visible text
+      roomSelect.appendChild(option);
+      // }
     });
   }
 }

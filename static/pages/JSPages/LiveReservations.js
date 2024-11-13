@@ -372,6 +372,9 @@ document
     newReservationRef
       .set(reservationData)
       .then(() => {
+        alert("Reservation submitted successfully!");
+        document.getElementById("reservation-form").reset();
+
         const reservationID = newReservationRef.key;
         const PaymentsPageLink =
           "../HTMLPages/LivePayments.html?ReservationID=" + reservationID;

@@ -185,6 +185,20 @@ function renderCalendar() {
       );
     });
   });
+  database.ref("futurereservations").once("value", (snapshot) => {
+    snapshot.forEach((reservation) => {
+      const reservationData = reservation.val();
+
+      EventSection(
+        reservationData.roomName,
+        reservationData.checkIn,
+        reservationData.checkOut,
+        reservationData.fullName,
+        "#f4b084",
+        "black"
+      );
+    });
+  });
 }
 
 function isToday(date) {

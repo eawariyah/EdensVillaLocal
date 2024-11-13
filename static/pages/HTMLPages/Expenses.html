@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory</title>
+    <link rel="stylesheet" href="../CSSPages/Expenses.css" />
+  </head>
+  <body>
+    <div style="width: 100%">
+      <button
+        class="BackButton"
+        id="close"
+        style="text-align: center; width: 10%; margin: 10px"
+        type="button"
+      >
+        &LeftArrow; Back
+      </button>
+    </div>
+    <div class="container">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: #1e1e1e;
+          border-radius: 8px 0px 0px 8px;
+          width: 100%;
+          padding: 20px;
+        "
+      >
+        <form id="expenses-form">
+          <label for="staff">Staff Name:</label>
+          <select id="staff">
+            <option value="" disabled selected>Select a staff member</option>
+          </select>
+
+          <label for="room">Room:</label>
+          <select id="room">
+            <option value="" disabled selected>Select a room</option>
+          </select>
+
+          <label for="item">Item:</label>
+          <select id="item">
+            <option value="" disabled selected>Select an item</option>
+          </select>
+
+          <label for="quantity">Quantity:</label>
+          <select id="quantity">
+            <option value="" disabled selected>One at a time</option>
+            <option value="1">1</option>
+          </select>
+
+          <label for="date">Date:</label>
+          <input type="date" id="date" required />
+
+          <label for="specialRequests">Notes:</label>
+          <textarea id="specialRequests" rows="3"></textarea>
+
+          <button type="submit">Add Expense</button>
+        </form>
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          background-color: #3f3f3f;
+          padding: 20px;
+          width: 100%;
+        "
+      >
+        <h2>Inventory</h2>
+        <table id="expenses-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody id="expenses-body">
+            <!-- Expenses will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/Expenses.js"></script>
+  </body>
+</html>

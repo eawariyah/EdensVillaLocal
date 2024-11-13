@@ -3,6 +3,8 @@ body {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
+  background-color: #000000;
+  color: white;
 }
 
 /* h1 {
@@ -13,6 +15,10 @@ body {
   margin-top: 20px;
   overflow-x: auto;
   display: flex;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #292929;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -28,8 +34,21 @@ td {
 }
 
 th {
-  background-color: #1e1e1e;
   font-weight: bold;
+  background-color: #292929;
+  color: white;
+}
+
+td {
+  color: white;
+  cursor: pointer;
+  background-color: #1f1f1f;
+  transition: background-color 0.3s ease;
+}
+
+td:hover {
+  background-color: #2a2d31;
+  color: white;
 }
 
 td.today {

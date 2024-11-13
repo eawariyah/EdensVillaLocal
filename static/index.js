@@ -72,9 +72,14 @@ StaffCalendarButtonButton.addEventListener("click", () => {
   window.open("../static/pages/HTMLPages/StaffCalendar.html", "_self");
 });
 
-const StaffTasksButtonButton = document.getElementById("StaffTasks");
-StaffTasksButtonButton.addEventListener("click", () => {
-  window.open("../static/pages/HTMLPages/StaffTasks.html", "_self");
+const ExpensesButton = document.getElementById("Expenses");
+ExpensesButton.addEventListener("click", () => {
+  window.open("../static/pages/HTMLPages/Expenses.html", "_self");
+});
+
+const AdminButton = document.getElementById("AdminPage");
+AdminButton.addEventListener("click", () => {
+  window.open("../static/pages/HTMLPages/AdminPage.html", "_self");
 });
 
 document
@@ -87,7 +92,7 @@ function searchReservations() {
 
 const CreateReservationButton = document.getElementById("CreateReservationBtn");
 CreateReservationButton.addEventListener("click", () => {
-  window.open("../static/pages/HTMLPages/LiveReservations.html", "_self");
+  window.open("../static/pages/HTMLPages/CheckoutPage.html", "_self");
 });
 
 const CreateReservationButtonTwo = document.getElementById(
@@ -127,9 +132,9 @@ CheckOutButton.addEventListener("click", () => {
   window.open("../static/pages/HTMLPages/CheckoutPage.html", "_self");
 });
 
-const Renew = document.getElementById("ExtendStay");
+const Renew = document.getElementById("BulkReservations");
 Renew.addEventListener("click", () => {
-  window.open("./htmlfiles/renew.html", "_self");
+  window.open("../static/pages/HTMLPages/BulkReservation.html", "_self");
 });
 
 const ManageWiFi = document.getElementById("ManageWifi");
@@ -593,13 +598,13 @@ function updateRoomColor(roomName, status) {
   }
 }
 
-const Staff = ["Spendilove", "Veronica", "Eva"];
+const Staff = ["Fadilatu", "Blessing", "Eva"];
 
 // Define the working days for each staff (0 = Sunday, 1 = Monday, etc.)
 const schedule = {
-  [Staff[0]]: [3, 4, 0], // Wed, Thurs, Sun
+  [Staff[0]]: [1, 2, 3, 4, 5], // Wed, Thurs, Sun
   [Staff[1]]: [1, 2, 3, 4, 5], // Mon-Fri
-  [Staff[2]]: [1, 2, 5, 6], // Mon, Tue, Fri, Sat
+  [Staff[2]]: [4, 5, 0, 1], // Mon, Tue, Fri, Sat
 };
 
 // Get the current day (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
@@ -639,6 +644,40 @@ function displayStaffOnDuty() {
 }
 
 // Call the function to display the duty staff
+// Initialize the function to poll reservations and update the notification
+function startNotificationPolling() {
+  setInterval(async () => {
+    try {
+      const snapshot = await database.ref("reservations").once("value");
+      const currentTime = new Date();
+      let showNotification = false;
+
+      snapshot.forEach((childSnapshot) => {
+        const reservation = childSnapshot.val();
+        const checkOutDate = new Date(reservation.checkOut);
+
+        // Calculate the time difference in milliseconds
+        const timeDifference = checkOutDate - currentTime;
+
+        // If the checkout is within 48 hours (172800000 ms), show the notification
+        if (timeDifference > 0 && timeDifference <= 172800000) {
+          showNotification = true;
+          return true; // Exit loop early if condition is met
+        }
+      });
+
+      // Update the display of NewNotification based on availability
+      const notificationDiv = document.getElementById("NewNotification");
+      if (showNotification) {
+        notificationDiv.style.display = "block";
+      } else {
+        notificationDiv.style.display = "none";
+      }
+    } catch (error) {
+      console.error("Error polling reservations:", error);
+    }
+  }, 100000); // Runs every 1 second
+}
 
 // Call the function to update counts and room counts when the page loads
 window.onload = function () {
@@ -648,4 +687,5 @@ window.onload = function () {
   fetchReservationsAndDrawChart();
   fetchRoomData1();
   displayStaffOnDuty();
+  startNotificationPolling();
 };

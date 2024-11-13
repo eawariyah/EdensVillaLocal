@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.modal {
+  /* display: flex; */
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.reservationLength {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.bioData {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tableContainer {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+/* Drawer styling */
+.Drawer {
+  position: fixed;
+  top: 0;
+  right: -350px; /* Start off-screen */
+  width: 300px;
+  height: 100%;
+  background-color: #f9f9f9;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease; /* Smooth slide transition */
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.Drawer.open {
+  right: 0; /* Bring the drawer fully onto the screen */
+}
+
+.Drawer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.Drawer th,
+.Drawer td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.Drawer button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
