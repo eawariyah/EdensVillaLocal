@@ -72,9 +72,9 @@ StaffCalendarButtonButton.addEventListener("click", () => {
   window.open("../static/pages/HTMLPages/StaffCalendar.html", "_self");
 });
 
-const ExpensesButton = document.getElementById("Expenses");
+const ExpensesButton = document.getElementById("StaffTasks");
 ExpensesButton.addEventListener("click", () => {
-  window.open("../static/pages/HTMLPages/Expenses.html", "_self");
+  window.open("../static/pages/HTMLPages/StaffTasks.html", "_self");
 });
 
 const AdminButton = document.getElementById("AdminPage");
@@ -142,9 +142,9 @@ ManageWiFi.addEventListener("click", () => {
   window.open("https://bill.cloudghana.com/user.php", "_blank");
 });
 
-const SocialMedia = document.getElementById("Insta");
+const SocialMedia = document.getElementById("Inventory");
 SocialMedia.addEventListener("click", () => {
-  window.open("https://www.instagram.com/edens_villa/", "_blank");
+  window.open("../static/pages/HTMLPages/Inventory.html", "_self");
 });
 
 const Reviews = document.getElementById("Reviews");

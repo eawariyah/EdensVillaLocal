@@ -164,6 +164,74 @@
               <button id="BulkReservations" style="width: 100%">Bulk</button>
             </div>
           </div>
+
+          <!-- <button class="OtherButtonChoice" id="ManageRoomsBtn" type="button">
+            Manage Rooms
+          </button> -->
+          <button class="OtherButtonChoice" id="ViewHistoryBtn" type="button">
+            View History
+          </button>
+          <button class="OtherButtonChoice" id="Inventory" type="button">
+            Inventory
+          </button>
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <button
+              class="OtherButtonChoice"
+              id="ManageStaffBtn"
+              onclick="openStaff()"
+              type="button"
+            >
+              Manage Staff
+            </button>
+            <div
+              id="StaffMenu"
+              style="
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 10px;
+              "
+            >
+              <button id="StaffCalendar" style="width: 100%">Calendar</button>
+              <button id="StaffTasks" style="width: 100%">Tasks</button>
+            </div>
+          </div>
+
+          <!-- <button
+            class="OtherButtonChoice"
+            id="ManageStaffBtn"
+            onclick="openStaff()"
+            type="button"
+          >
+            Manage Staff
+          </button>
+          <div
+            style="
+              width: 200px;
+              height: 120px;
+              border-radius: 5px;
+              background-color: black;
+              position: absolute;
+              bottom: 65px;
+              left: 400px;
+            "
+            id="StaffMenu"
+          >
+            <button class="ButtonChoice" id="StaffCalendar" type="button">
+              Calender
+            </button>
+            <button class="ButtonChoice" id="RosterSetup" type="button">
+              Roster Days
+            </button>
+          </div> -->
           <div
             style="
               display: flex;
@@ -196,79 +264,13 @@
               <button id="ManageRooms" style="width: 100%">Manage Rooms</button>
             </div>
           </div>
-          <!-- <button class="OtherButtonChoice" id="ManageRoomsBtn" type="button">
-            Manage Rooms
-          </button> -->
-          <button class="OtherButtonChoice" id="ViewHistoryBtn" type="button">
-            View History
-          </button>
-          <div
-            style="
-              display: flex;
-              flex-direction: row;
-              width: 100%;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <button
-              class="OtherButtonChoice"
-              id="ManageStaffBtn"
-              onclick="openStaff()"
-              type="button"
-            >
-              Manage Staff
-            </button>
-            <div
-              id="StaffMenu"
-              style="
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin: 10px;
-              "
-            >
-              <button id="StaffCalendar" style="width: 100%">Calendar</button>
-              <button id="Expenses" style="width: 100%">Expenses</button>
-            </div>
-          </div>
-
-          <!-- <button
-            class="OtherButtonChoice"
-            id="ManageStaffBtn"
-            onclick="openStaff()"
-            type="button"
-          >
-            Manage Staff
-          </button>
-          <div
-            style="
-              width: 200px;
-              height: 120px;
-              border-radius: 5px;
-              background-color: black;
-              position: absolute;
-              bottom: 65px;
-              left: 400px;
-            "
-            id="StaffMenu"
-          >
-            <button class="ButtonChoice" id="StaffCalendar" type="button">
-              Calender
-            </button>
-            <button class="ButtonChoice" id="RosterSetup" type="button">
-              Roster Days
-            </button>
-          </div> -->
           <button class="OtherButtonChoice" id="ExtendStay" type="button">
             Manage Payments
           </button>
           <button class="OtherButtonChoice" id="ManageWifi" type="button">
             Manage WiFi
           </button>
-          <button class="OtherButtonChoice" id="Insta" type="button">
-            Analytics
-          </button>
+
           <button class="OtherButtonChoice" id="Reviews" type="button">
             Reviews
           </button>

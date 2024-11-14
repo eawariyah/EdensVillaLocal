@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Scheduler</title>
+    <link rel="stylesheet" href="../CSSPages/StaffTasks.css" />
+    <link rel="icon" href="../PageResources/EdenVilla.jpg" />
+  </head>
+  <body>
+    <button
+      class="BackButton"
+      id="close"
+      style="text-align: center; width: 10%; margin: 10px"
+      type="button"
+    >
+      &LeftArrow; Back
+    </button>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <h1
+        style="
+          display: flex;
+          flex-direction: column;
+          margin: 10px;
+          text-align: center;
+        "
+      >
+        Tomorrow is
+      </h1>
+      <h1 id="TomorrowsDay"></h1>
+    </div>
+    <div class="container">
+      <div style="display: flex; flex-direction: column; margin: 10px">
+        <div
+          id="tasks"
+          style="display: flex; flex-direction: column; margin-bottom: 10px"
+          class="task-list"
+        >
+          <h3>Rooms to Clean</h3>
+          <!-- Task list will be populated by JS -->
+        </div>
+
+        <div
+          id="UserTasks"
+          style="display: flex; flex-direction: column; margin-bottom: 10px"
+          class="task-list"
+        >
+          <h3>Custom Task</h3>
+          <input
+            type="text"
+            style="margin-bottom: 10px"
+            placeholder="New Task"
+            id="CustomTaskInput"
+          />
+          <button id="addTaskButton">Add Task</button>
+        </div>
+      </div>
+      <div style="margin: 10px">
+        <div id="dayTasks" class="day-tasks">
+          <h3
+            style="
+              writing-mode: vertical-lr;
+              text-orientation: sideways;
+              transform: rotate(180deg);
+            "
+          >
+            Days
+          </h3>
+          <!-- Day tasks will be populated by JS -->
+        </div>
+        <div
+          id="RemoveTask"
+          style="
+            background-color: red;
+            margin-top: 10px;
+            padding: 10px;
+            height: 50%;
+          "
+          class="day-tasks"
+        >
+          <h3 style="color: white">Delete</h3>
+          <!-- Day tasks will be populated by JS -->
+        </div>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="../JSPages/StaffTasks.js"></script>
+  </body>
+</html>

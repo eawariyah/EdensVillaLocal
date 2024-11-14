@@ -1,221 +1,263 @@
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAgXyyibV7I04EzHE_nhxdWGAOKaYWGp0E",
+  authDomain: "fruitripenessdetectionsystem.firebaseapp.com",
+  databaseURL:
+    "https://fruitripenessdetectionsystem-default-rtdb.firebaseio.com",
+  projectId: "fruitripenessdetectionsystem",
+  storageBucket: "fruitripenessdetectionsystem.appspot.com",
+  messagingSenderId: "103968652296",
+  appId: "1:103968652296:web:79a1bfc1495062779165bd",
+  measurementId: "G-7HR89GF4K9",
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 const CloseButton = document.getElementById("close");
 CloseButton.addEventListener("click", () => {
   window.history.back();
 });
 var Staff = ["Blessing", "Fadilatu"];
-const RoomsDB = [
-  "EV4A04",
-  "EV4B04",
-  "EV4C07",
-  "EV4C08",
-  "EV4D07",
-  "EV4D08",
-  "EV5A05",
-  "EV5B05",
-  "EV5C09",
-  "EV5C10",
-  "EV5D09",
-  "EV5D10",
-];
+const RoomsDB = [];
 
-var RoomServiceRooms = [
-  "EV4A04",
-  "EV4B04",
-  "EV4C07",
-  "EV4C08",
-  "EV4D07",
-  "EV4D08",
-];
+var RoomServiceRooms = [];
 var RoomTasks = {
-  Monday: [],
-  Tuesday: [],
-  Wednesday: [],
-  Thursday: [],
-  Friday: [],
-  Saturday: [],
-  Sunday: [],
+  // Monday: ["TestA", "TestA", "TestA", "TestA", "TestA", "TestA"],
+  // Tuesday: ["TestB", "TestB", "TestB", "TestB", "TestB", "TestB"],
+  // Wednesday: ["TestC", "TestC", "TestC", "TestC", "TestC", "TestC"],
+  // Thursday: ["TestD", "TestD", "TestD", "TestD", "TestD", "TestD"],
+  // Friday: ["TestE", "TestE", "TestE", "TestE", "TestE", "TestE"],
+  // Saturday: ["TestF", "TestF", "TestF"],
+  // Sunday: ["TestG", "TestG", "TestG"],
 };
 
-let currentIndex = 0; // Keeps track of room assignment for each day
+function fetchFromFirebase() {
+  firebase
+    .database()
+    .ref("taskData")
+    .get()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        Tasks = data.Tasks || []; // Fallback to empty array if no data
+        RoomTasks = data.DayTasks || {};
+
+        // Re-render the UI with the fetched data
+        // renderTasks();
+        // renderDayTasks();
+        generateTable();
+
+        // console.log("Fetched Tasks:", Tasks);
+        // console.log(RoomTasks);
+      } else {
+        console.log("No data found in Firebase.");
+      }
+    })
+    .catch((error) =>
+      console.error("Error fetching data from Firebase:", error)
+    );
+}
+
+// Array to track the current index for each day
+const taskIndexTracker = {
+  Monday: 0,
+  Tuesday: 0,
+  Wednesday: 0,
+  Thursday: 0,
+  Friday: 0,
+  Saturday: 0,
+  Sunday: 0,
+};
 
 function AssignJob(day) {
-  // Fill RoomTasks for each day with up to 6 rooms
-  if (RoomTasks[day].length === 0 && currentIndex < RoomsDB.length) {
-    for (let i = 0; i < 6 && currentIndex < RoomsDB.length; i++) {
-      RoomTasks[day].push(RoomsDB[currentIndex]);
-      currentIndex++;
-    }
+  // console.log(RoomTasks);
+
+  const tasks = RoomTasks[day]; // Get the tasks for the specified day
+
+  // Check if there are tasks available for the day
+  if (tasks.length === 0) {
+    return "No Tasks Assigned";
   }
 
-  // Retrieve and return the next room for the specified day
-  return RoomTasks[day].shift() || "No more rooms"; // If no more rooms, return message
+  // Get the current task based on the index
+  const task = tasks[taskIndexTracker[day]];
+
+  // Update the index to the next task, looping back to 0 if at the end of tasks array
+  taskIndexTracker[day] = (taskIndexTracker[day] + 1) % tasks.length;
+
+  return task;
 }
-const scheduleData = [
-  {
-    time: `8:00 - 8:30`,
-    Monday: `Arrival Time`,
-    Tuesday: `Arrival Time`,
-    Wednesday: `Arrival Time`,
-    Thursday: `Arrival Time`,
-    Friday: `Arrival Time`,
-    Saturday: `Arrival Time`,
-    Sunday: `Arrival Time`,
-  },
-  {
-    time: `8:30 - 9:30`,
-    Monday: `Staff 1: ${AssignJob("Monday")}`,
-    Tuesday: `Staff 1: ${AssignJob("Tuesday")}`,
-    Wednesday: `Staff 1: ${AssignJob("Wednesday")}`,
-    Wednesday: `Staff 1: ${AssignJob("Thursday")}`,
-    Friday: `Staff 1: ${AssignJob("Friday")}`,
-    Saturday: `Staff 1: ${AssignJob("Saturday")}`,
-    Sunday: `Staff 2: ${AssignJob("Sunday")}`,
-  },
-  {
-    time: ``,
-    Monday: `Staff 2: ${AssignJob("Monday")}`,
-    Tuesday: `Staff 2: ${AssignJob("Tuesday")}`,
-    Wednesday: `Staff 2: ${AssignJob("Wednesday")}`,
-    Thursday: `Staff 2: ${AssignJob("Thursday")}`,
-    Friday: `Staff 2: ${AssignJob("Friday")}`,
-    Saturday: `Staff 1: ${AssignJob("Saturday")}`,
-    Sunday: `Staff 2: ${AssignJob("Sunday")}`,
-  },
-  {
-    time: `9:30 - 10:30`,
-    Monday: `Breakfast Break`,
-    Tuesday: `Breakfast Break`,
-    Wednesday: `Breakfast Break`,
-    Thursday: `Breakfast Break`,
-    Friday: `Breakfast Break`,
-    Saturday: `Breakfast Break`,
-    Sunday: `Breakfast Break`,
-  },
-  {
-    time: `10:30 - 11:30`,
-    Monday: `Staff 1: ${AssignJob("Monday")}`,
-    Tuesday: `Staff 1: ${AssignJob("Tuesday")}`,
-    Wednesday: `Staff 1: ${AssignJob("Wednesday")}`,
-    Wednesday: `Staff 1: ${AssignJob("Thursday")}`,
-    Friday: `Staff 1: ${AssignJob("Friday")}`,
-    Saturday: `Staff 1: ${AssignJob("Saturday")}`,
-    Sunday: `Staff 2: ${AssignJob("Sunday")}`,
-  },
-  {
-    time: ``,
-    Monday: `Staff 2: ${AssignJob("Monday")}`,
-    Tuesday: `Staff 2: ${AssignJob("Tuesday")}`,
-    Wednesday: `Staff 2: ${AssignJob("Wednesday")}`,
-    Thursday: `Staff 2: ${AssignJob("Thursday")}`,
-    Friday: `Staff 2: ${AssignJob("Friday")}`,
-    Saturday: `Staff 1: ${AssignJob("Saturday")}`,
-    Sunday: `Staff 2: ${AssignJob("Sunday")}`,
-  },
-  {
-    time: `11:30 - 12:30`,
-    Monday: `Staff 1: ${AssignJob("Monday")}`,
-    Tuesday: `Staff 1: ${AssignJob("Tuesday")}`,
-    Wednesday: `Staff 1: ${AssignJob("Wednesday")}`,
-    Wednesday: `Staff 1: ${AssignJob("Thursday")}`,
-    Friday: `Staff 1: ${AssignJob("Friday")}`,
-    Saturday: ``,
-    Sunday: ``,
-  },
-  {
-    time: ``,
-    Monday: `Staff 2: ${AssignJob("Monday")}`,
-    Tuesday: `Staff 2: ${AssignJob("Tuesday")}`,
-    Wednesday: `Staff 2: ${AssignJob("Wednesday")}`,
-    Thursday: `Staff 2: ${AssignJob("Thursday")}`,
-    Friday: `Staff 2: ${AssignJob("Friday")}`,
-    Saturday: ``,
-    Sunday: ``,
-  },
-  {
-    time: `12:30 - 2:00`,
-    Monday: `Lunch Break`,
-    Tuesday: `Lunch Break`,
-    Wednesday: `Lunch Break`,
-    Thursday: `Lunch Break`,
-    Friday: `Lunch Break`,
-    Saturday: `Lunch Break`,
-    Sunday: `Lunch Break`,
-  },
-  {
-    time: `2:00 - 3:00`,
-    Monday: `Staff 1: Room Service`,
-    Tuesday: `Staff 1: Room Service`,
-    Wednesday: `Staff 1: Room Service`,
-    Thursday: `Staff 1: Room Service`,
-    Friday: `Staff 1: Room Service`,
-    Saturday: `Staff 1: Room Service`,
-    Sunday: `Staff 2: Room Service`,
-  },
-  {
-    time: ``,
-    Monday: `Staff 2: Room Service`,
-    Tuesday: `Staff 2: Room Service`,
-    Wednesday: `Staff 2: Room Service`,
-    Thursday: `Staff 2: Room Service`,
-    Friday: `Staff 2: Room Service`,
-    Saturday: `Staff 1: Room Service`,
-    Sunday: `Staff 2: Room Service`,
-  },
-  {
-    time: `3:00 - 4:00`,
-    Monday: `Staff 1: Room Service`,
-    Tuesday: `Staff 1: Room Service`,
-    Wednesday: `Staff 1: Room Service`,
-    Thursday: `Staff 1: Room Service`,
-    Friday: `Staff 1: Room Service`,
-    Saturday: `Staff 1: Room Service`,
-    Sunday: `Staff 2: Room Service`,
-  },
-  {
-    time: ``,
-    Monday: `Staff 2: Room Service`,
-    Tuesday: `Staff 2: Room Service`,
-    Wednesday: `Staff 2: Room Service`,
-    Thursday: `Staff 2: Room Service`,
-    Friday: `Staff 2: Room Service`,
-    Saturday: `Staff 1: Room Service`,
-    Sunday: `Staff 2: Room Service`,
-  },
-  {
-    time: `4:00 - 4:30`,
-    Monday: `Staff 1: EV5, EV4, EV3`,
-    Tuesday: `Staff 1: EV5, EV4, EV3`,
-    Wednesday: `Staff 1: EV5, EV4, EV3`,
-    Thursday: `Staff 1: EV5, EV4, EV3`,
-    Friday: `Staff 1: EV5, EV4, EV3`,
-    Saturday: `Staff 1: EV5, EV4, EV3`,
-    Sunday: `Staff 1: EV5, EV4, EV3`,
-  },
-  {
-    time: ``,
-    Monday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-    Tuesday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-    Wednesday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-    Thursday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-    Friday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-    Saturday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-    Sunday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
-  },
-  {
-    time: `4:30 - 5:00`,
-    Monday: `Closing Time`,
-    Tuesday: `Closing Time`,
-    Wednesday: `Closing Time`,
-    Thursday: `Closing Time`,
-    Friday: `Closing Time`,
-    Saturday: `Closing Time`,
-    Sunday: `Closing Time`,
-  },
-];
+
+// Initialize the counter for job assignment
+AssignJob.counter = 0;
 
 // Function to generate the table dynamically
 // Function to generate the table dynamically
 function generateTable() {
+  const scheduleData = [
+    {
+      time: `8:00 - 8:30`,
+      Monday: `Arrival Time`,
+      Tuesday: `Arrival Time`,
+      Wednesday: `Arrival Time`,
+      Thursday: `Arrival Time`,
+      Friday: `Arrival Time`,
+      Saturday: `Arrival Time`,
+      Sunday: `Arrival Time`,
+    },
+    {
+      time: `8:30 - 9:30`,
+      Monday: `Staff 1: ${AssignJob("Monday")}`,
+      Tuesday: `Staff 1: ${AssignJob("Tuesday")}`,
+      Wednesday: `Staff 1: ${AssignJob("Wednesday")}`, // Fixed this line
+      Thursday: `Staff 1: ${AssignJob("Thursday")}`,
+      Friday: `Staff 1: ${AssignJob("Friday")}`,
+      Saturday: `Staff 1: ${AssignJob("Saturday")}`,
+      Sunday: `Staff 2: ${AssignJob("Sunday")}`,
+    },
+    {
+      time: ``,
+      Monday: `Staff 2: ${AssignJob("Monday")}`,
+      Tuesday: `Staff 2: ${AssignJob("Tuesday")}`,
+      Wednesday: `Staff 2: ${AssignJob("Wednesday")}`,
+      Thursday: `Staff 2: ${AssignJob("Thursday")}`,
+      Friday: `Staff 2: ${AssignJob("Friday")}`,
+      Saturday: ``,
+      Sunday: ``,
+    },
+    {
+      time: `9:30 - 10:30`,
+      Monday: `Breakfast Break`,
+      Tuesday: `Breakfast Break`,
+      Wednesday: `Breakfast Break`,
+      Thursday: `Breakfast Break`,
+      Friday: `Breakfast Break`,
+      Saturday: `Breakfast Break`,
+      Sunday: `Breakfast Break`,
+    },
+    {
+      time: `10:30 - 11:30`,
+      Monday: `Staff 1: ${AssignJob("Monday")}`,
+      Tuesday: `Staff 1: ${AssignJob("Tuesday")}`,
+      Wednesday: `Staff 1: ${AssignJob("Wednesday")}`, // Fixed this line
+      Thursday: `Staff 1: ${AssignJob("Thursday")}`,
+      Friday: `Staff 1: ${AssignJob("Friday")}`,
+      Saturday: `Staff 1: ${AssignJob("Saturday")}`,
+      Sunday: `Staff 2: ${AssignJob("Sunday")}`,
+    },
+    {
+      time: ``,
+      Monday: `Staff 2: ${AssignJob("Monday")}`,
+      Tuesday: `Staff 2: ${AssignJob("Tuesday")}`,
+      Wednesday: `Staff 2: ${AssignJob("Wednesday")}`,
+      Thursday: `Staff 2: ${AssignJob("Thursday")}`,
+      Friday: `Staff 2: ${AssignJob("Friday")}`,
+      Saturday: ``,
+      Sunday: ``,
+    },
+    {
+      time: `11:30 - 12:30`,
+      Monday: `Staff 1: ${AssignJob("Monday")}`,
+      Tuesday: `Staff 1: ${AssignJob("Tuesday")}`,
+      Wednesday: `Staff 1: ${AssignJob("Wednesday")}`, // Fixed this line
+      Thursday: `Staff 1: ${AssignJob("Thursday")}`,
+      Friday: `Staff 1: ${AssignJob("Friday")}`,
+      Saturday: `Staff 1: ${AssignJob("Saturday")}`,
+      Sunday: `Staff 2: ${AssignJob("Sunday")}`,
+    },
+    {
+      time: ``,
+      Monday: `Staff 2: ${AssignJob("Monday")}`,
+      Tuesday: `Staff 2: ${AssignJob("Tuesday")}`,
+      Wednesday: `Staff 2: ${AssignJob("Wednesday")}`,
+      Thursday: `Staff 2: ${AssignJob("Thursday")}`,
+      Friday: `Staff 2: ${AssignJob("Friday")}`,
+      Saturday: ``,
+      Sunday: ``,
+    },
+    {
+      time: `12:30 - 2:00`,
+      Monday: `Lunch Break`,
+      Tuesday: `Lunch Break`,
+      Wednesday: `Lunch Break`,
+      Thursday: `Lunch Break`,
+      Friday: `Lunch Break`,
+      Saturday: `Lunch Break`,
+      Sunday: `Lunch Break`,
+    },
+    {
+      time: `2:00 - 3:00`,
+      Monday: `Staff 1: Room Service`,
+      Tuesday: `Staff 1: Room Service`,
+      Wednesday: `Staff 1: Room Service`,
+      Thursday: `Staff 1: Room Service`,
+      Friday: `Staff 1: Room Service`,
+      Saturday: `Staff 1: Room Service`,
+      Sunday: `Staff 2: Room Service`,
+    },
+    {
+      time: ``,
+      Monday: `Staff 2: Room Service`,
+      Tuesday: `Staff 2: Room Service`,
+      Wednesday: `Staff 2: Room Service`,
+      Thursday: `Staff 2: Room Service`,
+      Friday: `Staff 2: Room Service`,
+      Saturday: ``,
+      Sunday: ``,
+    },
+    {
+      time: `3:00 - 4:00`,
+      Monday: `Staff 1: Room Service`,
+      Tuesday: `Staff 1: Room Service`,
+      Wednesday: `Staff 1: Room Service`,
+      Thursday: `Staff 1: Room Service`,
+      Friday: `Staff 1: Room Service`,
+      Saturday: `Staff 1: Room Service`,
+      Sunday: `Staff 2: Room Service`,
+    },
+    {
+      time: ``,
+      Monday: `Staff 2: Room Service`,
+      Tuesday: `Staff 2: Room Service`,
+      Wednesday: `Staff 2: Room Service`,
+      Thursday: `Staff 2: Room Service`,
+      Friday: `Staff 2: Room Service`,
+      Saturday: ``,
+      Sunday: ``,
+    },
+    {
+      time: `4:00 - 4:30`,
+      Monday: `Staff 1: EV5, EV4, EV3`,
+      Tuesday: `Staff 1: EV5, EV4, EV3`,
+      Wednesday: `Staff 1: EV5, EV4, EV3`,
+      Thursday: `Staff 1: EV5, EV4, EV3`,
+      Friday: `Staff 1: EV5, EV4, EV3`,
+      Saturday: `Staff 1: EV5, EV4, EV3`,
+      Sunday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
+    },
+    {
+      time: ``,
+      Monday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
+      Tuesday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
+      Wednesday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
+      Thursday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
+      Friday: `Staff 2: EV2, EV1, Pick Compound and Dustbins`,
+      Saturday: ``,
+      Sunday: ``,
+    },
+    {
+      time: `4:30 - 5:00`,
+      Monday: `Closing Time`,
+      Tuesday: `Closing Time`,
+      Wednesday: `Closing Time`,
+      Thursday: `Closing Time`,
+      Friday: `Closing Time`,
+      Saturday: `Closing Time`,
+      Sunday: `Closing Time`,
+    },
+  ];
   const table = document.getElementById("scheduleTable");
 
   // Create table header
@@ -268,4 +310,5 @@ function generateTable() {
   });
 }
 
-generateTable();
+fetchFromFirebase();
+// generateTable();

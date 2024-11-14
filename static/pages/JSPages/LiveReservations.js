@@ -458,6 +458,9 @@ function CalculateDays() {
   }
 
   calculatedDays = numberOfDays;
+  document.getElementById("NumberOfDaysBetweenValue").textContent =
+    numberOfDays;
+
   if (calculatedDays >= TwoWeeks) {
     DiscountAmount = DiscountTwoWeeks;
     document.getElementById("DiscountPercent").textContent = DiscountTwoWeeks;
