@@ -1,3 +1,39 @@
+const fields = [
+  "FirstName",
+  "LastName",
+  "companyInput",
+  "email",
+  "phone",
+  "IDType",
+  "checkin",
+  "checkout",
+  "RoomService",
+  "Kitchen",
+  "roomType",
+  "roomName",
+];
+
+fields.forEach((field) => {
+  document.getElementById(field).addEventListener("input", async (event) => {
+    const value = event.target.value;
+    if (value) {
+      try {
+        const response = await fetch("/inputValue", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ field, value }),
+        });
+        const data = await response.json();
+        console.log(`${field} updated:`, data.status); // Optionally log the response
+      } catch (error) {
+        console.error(`Error sending ${field} input:`, error);
+      }
+    }
+  });
+});
+
 const ViewHistoryButton = document.getElementById("viewHistory");
 ViewHistoryButton.addEventListener("click", () => {
   window.open("../HTMLPages/viewClientHistory.html", "_blank");

@@ -2,69 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Cube Animation</title>
-    <style>
-      /* Style to make canvas cover the full screen */
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #000;
-      }
-    </style>
+    <title>Television Display</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
   </head>
   <body>
-    <!-- Container for 3D scene -->
-    <div id="three-container"></div>
-
-    <!-- Import Three.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <h1>Television Screen</h1>
+    <p>Email: <span id="displayEmail">Waiting for input...</span></p>
 
     <script>
-      // JavaScript to create and animate the 3D cube
+      const socket = io();
 
-      // Step 2: Setup scene, camera, and renderer
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
-
-      // Step 3: Create a cube with geometry, material, and add it to the scene
-      const geometry = new THREE.BoxGeometry(1, 1, 1);
-      const material = new THREE.MeshBasicMaterial({
-        color: 0x00ff00,
-        wireframe: true,
-      });
-      const cube = new THREE.Mesh(geometry, material);
-      scene.add(cube);
-
-      // Position the camera slightly away from the cube
-      camera.position.z = 5;
-
-      // Step 4: Animation loop to rotate and render the cube
-      function animate() {
-        requestAnimationFrame(animate);
-        cube.rotation.x += 0.01; // Rotate cube around the x-axis
-        cube.rotation.y += 0.01; // Rotate cube around the y-axis
-        renderer.render(scene, camera); // Render the scene with the camera
-      }
-
-      // Start animation
-      animate();
-
-      // Adjusts renderer size when the window is resized
-      window.addEventListener("resize", () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+      // Listen for the email data from the server
+      socket.on("receive_email", (data) => {
+        document.getElementById("displayEmail").textContent = data.email;
       });
     </script>
   </body>
