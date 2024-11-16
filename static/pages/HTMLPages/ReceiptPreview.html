@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipt Preview</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fdfdfd;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .header img {
+        width: 60px;
+      }
+      .header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2em;
+        color: black;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      .details {
+        margin-bottom: 30px;
+      }
+      .details table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .details th,
+      .details td {
+        text-align: left;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      .room-image {
+        text-align: center;
+        margin: 30px 0;
+      }
+      .room-image img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+      }
+      .footer button {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .footer button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="./theme/seapalace/img/images/logo/logo.png"
+          alt="Eden's Villa Logo"
+        />
+        <h1>Eden's Villa</h1>
+        <p>Have any questions? Call (+233) 53 618 9994 or (+233) 50 615 7238</p>
+        <p>
+          Email: <a href="mailto:info@edensvilla.com">info@edensvilla.com</a>
+        </p>
+      </div>
+      <div class="details">
+        <h2>Receipt Details</h2>
+        <table>
+          <tr>
+            <th>Full Name</th>
+            <td id="fullName"></td>
+          </tr>
+          <tr>
+            <th>Check-In</th>
+            <td id="checkIn"></td>
+          </tr>
+          <tr>
+            <th>Check-Out</th>
+            <td id="checkOut"></td>
+          </tr>
+          <tr>
+            <th>Number of Days</th>
+            <td id="days"></td>
+          </tr>
+          <tr>
+            <th>Room Type</th>
+            <td id="roomType"></td>
+          </tr>
+          <tr>
+            <th>Total Cost</th>
+            <td id="totalCost"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="room-image">
+        <h3>Room Image</h3>
+        <img id="roomImage" src="" alt="Room" />
+      </div>
+      <div class="footer">
+        <button onclick="window.print()">Print Receipt</button>
+      </div>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      document.getElementById("fullName").textContent =
+        urlParams.get("fullName") || "N/A";
+      document.getElementById("checkIn").textContent =
+        urlParams.get("checkIn") || "N/A";
+      document.getElementById("checkOut").textContent =
+        urlParams.get("checkOut") || "N/A";
+      document.getElementById("days").textContent =
+        calculateDays(urlParams.get("checkIn"), urlParams.get("checkOut")) ||
+        "N/A";
+      document.getElementById("roomType").textContent =
+        urlParams.get("roomType") || "N/A";
+      document.getElementById("totalCost").textContent =
+        urlParams.get("totalCost") || "N/A";
+
+      // Helper function to calculate the number of days
+      function calculateDays(checkIn, checkOut) {
+        // Preprocess the date format to remove 'at' and make it parsable by Date constructor
+        function parseCustomDate(dateString) {
+          // Remove the second " at " (e.g., " at 2024 at ") and replace with commas
+          if (dateString) {
+            const parts = dateString.split(" at ");
+            if (parts.length === 3) {
+              // Reformat to a valid Date format, like "November 22, 2024, 11:10 PM"
+              return parts[0] + ", " + parts[1] + ", " + parts[2];
+            }
+          }
+          return dateString; // Return the original string if no valid format is found
+        }
+
+        const checkInDate = new Date(parseCustomDate(checkIn));
+        const checkOutDate = new Date(parseCustomDate(checkOut));
+
+        // Check if the dates are valid
+        if (isNaN(checkInDate) || isNaN(checkOutDate)) {
+          return "N/A"; // Return "N/A" if dates are invalid
+        }
+
+        return Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+      }
+    </script>
+  </body>
+</html>

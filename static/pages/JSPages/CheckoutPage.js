@@ -348,3 +348,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const printReceiptBtn = document.getElementById("PrintReceiptBtn");
+
+printReceiptBtn.addEventListener("click", () => {
+  if (ReservationID === "") {
+    alert("Please select a reservation to print a receipt.");
+    return;
+  }
+
+  const fullName = document.getElementById("FullName").innerText;
+  const checkIn = document.getElementById("Checkin").innerText;
+  const checkOut = document.getElementById("Checkout").innerText;
+  const roomType = document.getElementById("RoomType").innerText;
+  const Kitchen = document.getElementById("Kitchen").innerText;
+
+  const totalCost = document.getElementById("Total").innerText;
+
+  // Navigate to receipt preview page with query parameters
+  const receiptPreviewUrl = `../HTMLPages/ReceiptPreview.html?fullName=${encodeURIComponent(
+    fullName
+  )}&checkIn=${encodeURIComponent(checkIn)}&checkOut=${encodeURIComponent(
+    checkOut
+  )}&roomType=${encodeURIComponent(roomType)}&totalCost=${encodeURIComponent(
+    totalCost
+  )}&Kitchen=${encodeURIComponent(Kitchen)}&ReservationID=${encodeURIComponent(
+    Kitchen
+  )}
+  )}`;
+
+  window.open(receiptPreviewUrl, "_self");
+});
