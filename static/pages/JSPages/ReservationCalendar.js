@@ -2,6 +2,40 @@ const CloseButton = document.getElementById("close");
 CloseButton.addEventListener("click", () => {
   window.history.back();
 });
+
+const RoomType = [
+  "Deluxe Suite",
+  "Deluxe Suite",
+  "Family Suite",
+  "Family Suite",
+  "Standard Suite",
+  "Standard Suite",
+  "Deluxe Suite",
+  "Deluxe Suite",
+  "Family Suite",
+  "Family Suite",
+  "Standard Suite",
+  "Standard Suite",
+  "Deluxe Suite",
+  "Deluxe Suite",
+  "Family Suite",
+  "Family Suite",
+  "Standard Suite",
+  "Standard Suite",
+  "Deluxe Suite",
+  "Deluxe Suite",
+  "Family Suite",
+  "Family Suite",
+  "Standard Suite",
+  "Standard Suite",
+  "Deluxe Suite",
+  "Deluxe Suite",
+  "Executive Suite",
+  "Executive Suite",
+  "Standard Suite",
+  "Standard Suite",
+];
+
 const rooms = [
   "EV5C10",
   "EV5D10",
@@ -35,38 +69,10 @@ const rooms = [
   "EV1D01",
 ];
 
-const RoomStatus = {
-  EV5C10: "Available",
-  EV5D10: "Available",
-  EV5A05: "Cleaning",
-  EV5B05: "Available",
-  EV5C09: "Available",
-  EV5D09: "Available",
-  EV4C08: "Unavailable",
-  EV4D08: "Available",
-  EV4A04: "Available",
-  EV4B04: "Available",
-  EV4C07: "Unavailable",
-  EV4D07: "Available",
-  EV3C06: "Available",
-  EV3D06: "Available",
-  EV3A03: "Available",
-  EV3B03: "Available",
-  EV3C05: "Unavailable",
-  EV3D05: "Available",
-  EV2D04: "Available",
-  EV2C04: "Cleaning",
-  EV2A02: "Available",
-  EV2B02: "Available",
-  EV2C03: "Available",
-  EV2D03: "Available",
-  EV1D02: "Available",
-  EV1C02: "Cleaning",
-  EV1A01: "Available",
-  EV1B01: "Cleaning",
-  EV1C01: "Available",
-  EV1D01: "Available",
-};
+// Initialize the RoomStatusRealTime object
+const RoomStatusRealTime = {};
+
+// Function to fetch real-time room status
 
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let currentWeekOffset = 0;
@@ -85,6 +91,34 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+
+function fetchRoomStatusRealTime(callback) {
+  database
+    .ref("rooms")
+    .once("value")
+    .then((snapshot) => {
+      const roomsData = snapshot.val(); // Get all room data
+
+      // Clear existing RoomStatusRealTime data
+      for (const key in RoomStatusRealTime) {
+        delete RoomStatusRealTime[key];
+      }
+
+      // Populate RoomStatusRealTime with roomName and Status
+      for (const roomId in roomsData) {
+        const room = roomsData[roomId];
+        RoomStatusRealTime[room.roomName] = room.Status; // Add to RoomStatusRealTime
+      }
+
+      console.log("RoomStatusRealTime updated:", RoomStatusRealTime);
+
+      // Execute the callback if provided
+      if (callback) callback();
+    })
+    .catch((error) => {
+      console.error("Error fetching room status:", error);
+    });
+}
 
 function updateWeeksToShow() {
   const weekCount = document.getElementById("week-count").value;
@@ -109,7 +143,7 @@ function renderCalendar() {
     const headerRow = document.createElement("tr");
 
     const roomHeader = document.createElement("th");
-    roomHeader.textContent = "Rooms";
+    roomHeader.textContent = "Rooms (Room Type)";
     headerRow.appendChild(roomHeader);
 
     for (let i = 0; i < 7; i++) {
@@ -131,13 +165,15 @@ function renderCalendar() {
     }
     table.appendChild(headerRow);
 
-    rooms.forEach((room) => {
+    rooms.forEach((room, index) => {
       const row = document.createElement("tr");
       const roomCell = document.createElement("td");
-      roomCell.textContent = room;
 
-      // Set background color based on RoomStatus
-      const status = RoomStatus[room];
+      // Display room with its type
+      roomCell.textContent = `${room} (${RoomType[index]})`;
+
+      // Set background color based on RoomStatusRealTime
+      const status = RoomStatusRealTime[room];
       if (status === "Unavailable") {
         roomCell.style.backgroundColor = "red";
         roomCell.style.color = "white";
@@ -185,7 +221,7 @@ function renderCalendar() {
       );
     });
   });
-  database.ref("futurereservations").once("value", (snapshot) => {
+  database.ref("RentReservations").once("value", (snapshot) => {
     snapshot.forEach((reservation) => {
       const reservationData = reservation.val();
 
@@ -256,13 +292,14 @@ function EventSection(
   });
 }
 
-// Initialize calendar and add sample event
-renderCalendar();
-EventSection(
-  "EV5C10",
-  "2024-10-26T15:31",
-  "2024-11-02T15:31",
-  "Mr. Smith",
-  "blue",
-  "white"
-);
+fetchRoomStatusRealTime(() => {
+  renderCalendar(); // Render calendar after data is fetched
+  EventSection(
+    "EV5C10",
+    "2024-10-26T15:31",
+    "2024-11-02T15:31",
+    "Mr. Smith",
+    "blue",
+    "white"
+  );
+});

@@ -10,17 +10,23 @@
         margin: 0;
         padding: 0;
       }
+      p {
+        margin: 0px;
+      }
       .container {
         max-width: 800px;
         margin: auto;
         padding: 20px;
-        border: 1px solid #ddd;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        background-color: #fdfdfd;
+        /* border: 1px solid #ddd; */
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        /* background-color: #fdfdfd; */
       }
       .header {
         text-align: center;
         margin-bottom: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
       }
       .header img {
         width: 60px;
@@ -43,8 +49,9 @@
       .details td {
         text-align: left;
         padding: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid black;
       }
+
       .room-image {
         text-align: center;
         margin: 30px 0;
@@ -76,15 +83,46 @@
   <body>
     <div class="container">
       <div class="header">
-        <img
-          src="./theme/seapalace/img/images/logo/logo.png"
-          alt="Eden's Villa Logo"
-        />
-        <h1>Eden's Villa</h1>
-        <p>Have any questions? Call (+233) 53 618 9994 or (+233) 50 615 7238</p>
-        <p>
-          Email: <a href="mailto:info@edensvilla.com">info@edensvilla.com</a>
-        </p>
+        <div style="display: flex; flex-direction: row">
+          <img
+            src="../PageResources/logo.png"
+            style="width: 60px; height: 60px"
+            alt="Eden's Villa Logo"
+          />
+          <h1>Eden's Villa</h1>
+        </div>
+        <div style="display: flex; flex-direction: row; gap: 30px">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              gap: 5px;
+            "
+          >
+            <img
+              src="../PageResources/Phone.png"
+              style="width: 20px; height: 20px"
+              alt=""
+            />
+            <div style="display: flex; flex-direction: column">
+              <p>Have any questions?</p>
+              <p>(+233) 53 618 9994</p>
+              <p>(+233) 50 615 7238</p>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: row; gap: 5px">
+            <img
+              src="../PageResources/EMail.png"
+              style="width: 20px; height: 20px"
+              alt=""
+            />
+            <div>
+              <p>Have any questions?</p>
+              <p>info@edensvilla.com</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="details">
         <h2>Receipt Details</h2>
@@ -102,22 +140,108 @@
             <td id="checkOut"></td>
           </tr>
           <tr>
-            <th>Number of Days</th>
-            <td id="days"></td>
-          </tr>
-          <tr>
             <th>Room Type</th>
             <td id="roomType"></td>
           </tr>
           <tr>
+            <th>Number of Days</th>
+            <td id="days"></td>
+          </tr>
+          <tr>
+            <th>Room Cost</th>
+            <td>
+              <div style="display: flex; flex-direction: row">
+                <p>GH₵ 600.00</p>
+              </div>
+            </td>
+          </tr>
+          <tr style="display: none">
+            <th>Kitchen</th>
+            <td>
+              <div style="display: flex; flex-direction: row">
+                <p id="Kitchen"></p>
+                <p>&ThinSpace;(GH₵ 100 Per day)</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Kitchen</th>
+            <td>
+              <div style="display: flex; flex-direction: row">
+                <p>GH₵ 100.00</p>
+              </div>
+            </td>
+          </tr>
+          <tr style="display: none">
             <th>Total Cost</th>
             <td id="totalCost"></td>
           </tr>
+          <tr>
+            <th>Total Cost</th>
+            <td>GH₵ 14,700.00</td>
+          </tr>
         </table>
       </div>
-      <div class="room-image">
-        <h3>Room Image</h3>
-        <img id="roomImage" src="" alt="Room" />
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: flex-end;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+          "
+        >
+          <h1 style="text-align: center">Summary</h1>
+          <div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                gap: 20px;
+              "
+            >
+              <p>Family Suite</p>
+              <p>GH₵ 12,600.00</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; margin-top: 10px">
+                x1 Adult, 21 nights
+              </p>
+            </div>
+          </div>
+          <div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                gap: 20px;
+                margin-top: 20px;
+              "
+            >
+              <p>Kitchen</p>
+              <p>GH₵ 2,100.00</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; margin-top: 10px">
+                x1 Adult, 21 nights
+              </p>
+            </div>
+          </div>
+          <div style="margin-top: 20px">
+            <div style="display: flex; justify-content: space-between">
+              <p style="font-weight: bold; font-size: 20px">Total</p>
+              <p style="font-weight: bold; font-size: 20px">GH₵ 14,700.00</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="footer">
         <button onclick="window.print()">Print Receipt</button>
@@ -136,6 +260,8 @@
         "N/A";
       document.getElementById("roomType").textContent =
         urlParams.get("roomType") || "N/A";
+      document.getElementById("Kitchen").textContent =
+        urlParams.get("Kitchen") || "N/A";
       document.getElementById("totalCost").textContent =
         urlParams.get("totalCost") || "N/A";
 

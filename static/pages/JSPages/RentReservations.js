@@ -122,10 +122,6 @@ document.getElementById("roomType").addEventListener("input", () => {
     roomSelect.appendChild(option);
   });
 });
-var ToPaymentsPage = "";
-document.getElementById("LivePayments").addEventListener("input", () => {
-  ToPaymentsPage = document.getElementById("LivePayments").value;
-});
 
 // Managing Company Checkbox
 document.getElementById("companyInput").style.display = "none";
@@ -422,19 +418,6 @@ document.getElementById("roomType").addEventListener("input", (event) => {
 
   // Add the current room type price to RunningPrice
   RunningPrice += previousRoomPrice;
-
-  alert("Number of days: " + NumberOfDays);
-  alert("Running price: " + RunningPrice);
-  document.getElementById("TotalRun").textContent = RunningPrice * NumberOfDays;
-
-  document.getElementById("DiscountValue").textContent = 0;
-
-  document.getElementById("TotalRunSum").textContent =
-    RunningPrice * NumberOfDays;
-  if (RequestDiscountPriceSelectedAlreadyFlag) {
-    RunningPrice = RunningPrice - RequestDiscountPrice;
-    RequestDiscountPriceSelectedAlreadyFlag = false;
-  }
 });
 
 document.getElementById("RequestDiscountDisplayDiv").style.display = "none";
@@ -459,8 +442,6 @@ document.getElementById("RequestDiscount").addEventListener("input", () => {
       RequestDiscountPrice;
     document.getElementById("RequestDiscountDisplayDiv").style.display = "flex";
   } else {
-    alert("Number of days: " + NumberOfDays);
-    alert("Running price: " + RunningPrice);
     document.getElementById("RequestDiscountDisplayDiv").style.display = "none";
     document.getElementById("TotalRun").textContent =
       RunningPrice * NumberOfDays;
@@ -500,7 +481,7 @@ document
     };
 
     // Store data in Firebase Realtime Database
-    const newReservationRef = database.ref("reservations").push();
+    const newReservationRef = database.ref("RentReservations").push();
     newReservationRef
       .set(reservationData)
       .then(() => {
@@ -520,10 +501,9 @@ document
             alert(
               "Reservation submitted and room status updated successfully!"
             );
-            alert("To Payments true/false: " + ToPaymentsPage);
+            var ToPaymentsPage = document.getElementById("LivePayments").value;
 
             if (ToPaymentsPage == "true") {
-              alert("Going to payment page with link:" + reservationID);
               window.open(PaymentsPageLink, "_self");
             } else {
               window.history.back();

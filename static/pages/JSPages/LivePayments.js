@@ -5,6 +5,10 @@ var PrePayment = 0;
 var CheckInDate = "";
 var OldDate = "";
 var NewDate = "";
+var RoomServiceValued = "";
+var KitchenValued = "";
+var RequestDiscountValued = "";
+
 const CloseButton = document.getElementById("close");
 CloseButton.addEventListener("click", () => {
   window.history.back();
@@ -101,11 +105,26 @@ function displayReservation() {
           reservationData.roomType || "N/A";
         document.getElementById("Room").innerText =
           reservationData.roomName || "N/A";
-        document.getElementById("RoomService").innerText =
-          reservationData.RoomService ? "Yes" : "No";
-        document.getElementById("Kitchen").innerText = reservationData.kitchen
-          ? "Yes"
-          : "No";
+
+        RoomServiceValued = reservationData.RoomService;
+        if (RoomServiceValued == "true") {
+          document.getElementById("RoomService").innerText = "Yes";
+        } else {
+          document.getElementById("RoomService").innerText = "No";
+        }
+        KitchenValued = reservationData.Kitchen;
+        if (KitchenValued == "true") {
+          document.getElementById("Kitchen").innerText = "Yes";
+        } else {
+          document.getElementById("Kitchen").innerText = "No";
+        }
+        RequestDiscountValued = reservationData.RequestDiscount;
+        if (RequestDiscountValued == "true") {
+          document.getElementById("RequestDiscount").innerText = "Yes";
+        } else {
+          document.getElementById("RequestDiscount").innerText = "No";
+        }
+
         document.getElementById("SpecialRequest").innerText =
           reservationData.specialRequests || "N/A";
 
@@ -127,7 +146,7 @@ function displayReservation() {
         var TwoWeeks = 14;
         var FourWeeks = 28;
         PrePayment = reservationData.PartialPayment;
-        if (reservationData.RoomService) {
+        if (reservationData.RoomService == "true") {
           RoomServiceCost = 10;
           RoomServiceBillings.innerText = RoomServiceCost * NumberOfDays;
           SumOfBill = SumOfBill + RoomServiceCost * NumberOfDays;
@@ -138,7 +157,7 @@ function displayReservation() {
         }
 
         var KitchenCost = 0;
-        if (reservationData.kitchen) {
+        if (reservationData.kitchen == "true") {
           KitchenCost = 10;
           KitchenBillings.innerText = KitchenCost * NumberOfDays;
           SumOfBill = SumOfBill + KitchenCost * NumberOfDays;
@@ -165,7 +184,11 @@ function displayReservation() {
         document.getElementById("RoomTypeBillingsValue").innerText =
           RoomTypeCost * NumberOfDays;
         SumOfBill = SumOfBill + RoomTypeCost * NumberOfDays;
-        if (NumberOfDays >= TwoWeeks) {
+        if (
+          NumberOfDays >= TwoWeeks &&
+          reservationData.RequestDiscount == "true" &&
+          NumberOfDays < FourWeeks
+        ) {
           DiscountAmount = (DiscountTwoWeeks / 100) * SumOfBill;
         } else if (NumberOfDays >= FourWeeks) {
           DiscountAmount = (DiscountFourWeeks / 100) * SumOfBill;
@@ -342,6 +365,82 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please select new check-out date.");
     }
   });
+
+  // Close modal if clicked outside content
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("DiscountdateModal");
+  const openModalBtn = document.getElementById("CustomerRequestDiscountBtn");
+  const closeModalBtn = document.getElementById("DiscountcloseModal");
+  const saveDateChangeBtn = document.getElementById("DiscountsaveDateChange");
+
+  // const currentCheckin = document.getElementById("currentCheckin");
+  const currentCheckout = document.getElementById("currentCheckout");
+  const checkinBillings = document.getElementById("CheckinBillings");
+  const checkoutBillings = document.getElementById("CheckoutBillings");
+
+  // const newCheckinInput = document.getElementById("newCheckin");
+  const newCheckoutInput = document.getElementById("newCheckout");
+
+  // Show modal on button click
+  openModalBtn.addEventListener("click", () => {
+    currentCheckin.textContent = checkinBillings.textContent;
+    currentCheckout.textContent = checkoutBillings.textContent;
+
+    modal.style.display = "flex";
+  });
+
+  // Close modal
+  closeModalBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Save date changes
+  // saveDateChangeBtn.addEventListener("click", () => {
+  //   // const newCheckinDate = newCheckinInput.value;
+  //   const newCheckoutDate = newCheckoutInput.value;
+
+  //   if (newCheckoutDate) {
+  //     const reservationRef = database.ref("reservations/" + ReservationID);
+
+  //     // Split OriginalDate into date and time components
+  //     const [DateComponent, TimeComponent] = OldDate.split("T");
+
+  //     // Combine UpdateDate with the time component to create NewDate
+  //     NewDate = `${newCheckoutDate}T${TimeComponent}`;
+
+  //     const checkinvalue = new Date(CheckInDate);
+  //     const checkoutvalue = new Date(NewDate);
+
+  //     const timeDifference = checkoutvalue.getTime() - checkinvalue.getTime();
+  //     const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days and round up
+
+  //     if (numberOfDays <= 0) {
+  //       alert("Check-out date must be later than check-in date.");
+  //       location.reload();
+  //     }
+
+  //     // Update the PartialPayment field in Firebase
+  //     reservationRef
+  //       .update({ checkOut: NewDate, days: numberOfDays })
+  //       .then(() => {
+  //         alert("New checkout date set: " + newCheckoutDate + "Refreshing...");
+  //         modal.style.display = "none";
+  //         location.reload();
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error updating Checkout Date: ", error);
+  //       });
+  //   } else {
+  //     alert("Please select new check-out date.");
+  //   }
+  // });
 
   // Close modal if clicked outside content
   window.addEventListener("click", (event) => {

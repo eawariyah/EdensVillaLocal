@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../CSSPages/PaymentPage.css" />
+    <link rel="stylesheet" href="../CSSPages/LivePayments.css" />
     <link rel="icon" href="../PageResources/EdenVilla.jpg" />
   </head>
   <body>
@@ -20,6 +20,19 @@
           <label for="newCheckout">New Check-Out Date:</label>
           <input type="date" id="newCheckout" />
           <button id="saveDateChange">Save Changes</button>
+        </div>
+      </div>
+      <div id="DiscountdateModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" id="DiscountcloseModal">&times;</span>
+          <h2>Customer Request Discount</h2>
+          <p>Current Check-In Date: <span id="currentCheckin"></span></p>
+          <p>Current Check-Out Date: <span id="currentCheckout"></span></p>
+          <!-- <label for="newCheckin">New Check-In Date:</label> -->
+          <!-- <input type="date" id="newCheckin" /> -->
+          <!-- <label for="newCheckout">New Check-Out Date:</label> -->
+          <!-- <input type="date" id="newCheckout" /> -->
+          <button id="DiscountsaveDateChange">Save Changes</button>
         </div>
       </div>
       <div class="FirstRow">
@@ -95,7 +108,11 @@
                   </div>
                 </div>
                 <div class="ItemRow">
-                  <div class="ItemBody" style="width: 100%">
+                  <div class="ItemBody">
+                    <div><p class="ItemTitle">Discount</p></div>
+                    <div class="ItemValue"><p id="RequestDiscount"></p></div>
+                  </div>
+                  <div class="ItemBody">
                     <div><p class="ItemTitle">Special Request</p></div>
                     <div class="ItemValue"><p id="SpecialRequest"></p></div>
                   </div>
@@ -140,6 +157,14 @@
               type="button"
             >
               Change Date
+            </button>
+            <button
+              style="width: 100%; margin-top: 10px; height: 50px"
+              class="OtherButtonChoice"
+              id="CustomerRequestDiscountBtn"
+              type="button"
+            >
+              Request Discount
             </button>
           </div>
 
@@ -332,6 +357,6 @@
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
-    <script src="../JSPages/PaymentPage.js"></script>
+    <script src="../JSPages/LivePayments.js"></script>
   </body>
 </html>
